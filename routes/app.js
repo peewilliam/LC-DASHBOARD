@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 const fs = require('fs');
-// const { executeQuery } = require('../connect/mysql');
+const { executeQuery } = require('../connect/firebird');
+
+
 
 router.get('/', async (req, res, next) => {
     // Se a rota raiz for acessada, carregue a página home
