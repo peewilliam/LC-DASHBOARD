@@ -2,13 +2,11 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 const fs = require('fs');
-const { executeQuery } = require('../connect/firebird');
-
-
+// const { executeQuery } = require('../connect/mysql');
 
 router.get('/', async (req, res, next) => {
     // Se a rota raiz for acessada, carregue a página home
-    const pagePath = path.join(__dirname, '../', 'public/pages/inicio.html');
+    const pagePath = path.join(__dirname, '../', 'public/pages/index.html');
 
     if (fs.existsSync(pagePath)) {
         res.sendFile(pagePath);
