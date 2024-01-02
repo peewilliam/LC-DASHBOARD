@@ -1,8 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const { executeQuery } = require('../connect/firebird');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
-
+const usersData = JSON.parse(fs.readFileSync('./server/usersData.json', 'utf-8'))
 
 router.get('/get', async (req, res, next) => {
   const result = await executeQuery('SELECT * FROM tabmovtra');
@@ -10,7 +13,22 @@ router.get('/get', async (req, res, next) => {
      res.status(200).json(result)
 });
 
+router.post('/login', async (req, res, next) => {
+  const { name, password } = req.body;
 
+  // Verifique as credenciais (substitua por um método mais seguro na prática)
+  const user = usersData.find(user => user.username === name && user.password === password);
 
+  if (user) {
+    // Crie um token JWT
+    const token = jwt.sign({ user: name }, process.env.PRIVATE_KEY);
+
+    // Envie o token para o cliente
+    res.json({ token });
+  } else {
+    res.status(401).json({ message: 'Credenciais inválidas' });
+  }
+
+});
 
 module.exports = router;

@@ -11,7 +11,7 @@
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/icon.svg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,11 +51,6 @@
 
 <body>
 
-  
-  <!-- ?PROD Only: Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  
   <!-- Content -->
 
 <div class="container-xxl">
@@ -66,26 +61,19 @@
         <div class="card-body">
           <!-- Logo -->
           <div class="app-brand justify-content-center mb-4 mt-2">
-            <a href="index.html" class="app-brand-link gap-2">
-              <span class="app-brand-logo demo">
-<svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z" fill="#7367F0" />
-  <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z" fill="#161616" />
-  <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z" fill="#161616" />
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z" fill="#7367F0" />
-</svg>
-</span>
-              <span class="app-brand-text demo text-body fw-bold ms-1">Vuexy</span>
-            </a>
+            <span class="app-brand-logo demo">
+              <img src="/assets/img/favicon/icon.svg" alt="Logo LC Transportes">
+              </span>
+            <span class="app-brand-text demo text-body fw-bold ms-1">LC Transportes</span>
           </div>
           <!-- /Logo -->
           <h4 class="mb-1 pt-2">Bem Vindo!</h4>
           <p class="mb-4">Por favor, insira suas credenciais para acessar sua conta!</p>
 
-          <form id="formAuthentication" class="mb-3" action="index.html" method="GET">
+          <form id="formAuthentication" class="mb-3" action="/" method="POST">
             <div class="mb-3">
               <label for="email" class="form-label">Usuário</label>
-              <input type="text" class="form-control" id="email" name="email-username" placeholder="Insira seu nome de usuário" autofocus>
+              <input type="text" class="form-control" id="name" name="email-username" placeholder="Insira seu nome de usuário" autofocus>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -108,34 +96,10 @@
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Acessar</button>
+              <button class="btn d-grid w-100" type="submit" style="background-color: #2F74B5; color: #FFF;" onclick="login()">Acessar</button>
             </div>
           </form>
 
-          <!-- <p class="text-center">
-            <span>New on our platform?</span>
-            <a href="auth-register-basic.html">
-              <span>Create an account</span>
-            </a>
-          </p> -->
-
-          <!-- <div class="divider my-4">
-            <div class="divider-text">or</div>
-          </div> -->
-
-          <div class="d-flex justify-content-center">
-            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-              <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-              <i class="tf-icons fa-brands fa-google fs-5"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-              <i class="tf-icons fa-brands fa-twitter fs-5"></i>
-            </a>
-          </div>
         </div>
       </div>
       <!-- /Register -->
@@ -146,7 +110,6 @@
 <!-- / Content -->
 
   <!-- Core JS -->
-  <!-- build:js assets/vendor/js/core.js -->
   
   <script src="/assets/vendor/libs/jquery/jquery.js"></script>
   <script src="/assets/vendor/libs/popper/popper.js"></script>
@@ -162,15 +125,50 @@
 
   <!-- Vendors JS -->
   <script src="/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
-<script src="/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
-<script src="/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+  <script src="/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+  <script src="/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
 
   <!-- Main JS -->
   <script src="/assets/js/main.js"></script>
   
-
   <!-- Page JS -->
   <script src="/assets/js/pages-auth.js"></script>
+
+  <script>
+    async function login() {
+      event.preventDefault(); // Impede a submissão padrão do formulário
+  
+      const name = document.getElementById('name').value;
+      const password = document.getElementById('password').value;
+  
+      // Faça uma solicitação para o servidor
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, password }),
+      });
+
+      // Verifique a resposta do servidor
+      if (response.ok) {
+        const { token } = await response.json();
+  
+        // Armazene o token com segurança (por exemplo, usando sessionStorage ou localStorage)
+        localStorage.setItem('token', token);
+  
+        // Redirecione para a página principal (ou qualquer outra página que você deseja)
+        window.location.href = 'dashboard';
+      } else {
+        const error = await response.json();
+        alert(error.message);
+
+        window.location.href = '/';
+      }
+  
+      return false; // Impede a submissão padrão do formulário
+    }
+  </script>
   
 </body>
 
