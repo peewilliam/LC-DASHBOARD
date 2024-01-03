@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const { executeQuery } = require('../connect/firebird');
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 const usersData = JSON.parse(fs.readFileSync('./server/usersData.json', 'utf-8'))
@@ -20,11 +19,8 @@ router.post('/login', async (req, res, next) => {
   const user = usersData.find(user => user.username === name && user.password === password);
 
   if (user) {
-    // Crie um token JWT
-    const token = jwt.sign({ user: name }, process.env.PRIVATE_KEY);
-
     // Envie o token para o cliente
-    res.json({ token });
+    res.json({ modules: user.module });
   } else {
     res.status(401).json({ message: 'Credenciais inválidas' });
   }

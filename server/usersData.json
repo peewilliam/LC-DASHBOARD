@@ -1,4 +1,4 @@
 [
-   {"username": "superuser", "password": "superuser"},
-   {"username": "edson", "password": "edson"}
+   {"username": "superuser", "password": "superuser", "module": [1,2,3,4]},
+   {"username": "edson", "password": "edson", "module": []}
 ]
