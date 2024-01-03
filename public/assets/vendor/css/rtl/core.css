@@ -24048,7 +24048,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 }
 
 .menu-toggle::after {
-   content: "";
+   /* content: ""; */
    position: absolute;
    top: 48%;
    display: block;
@@ -24141,14 +24141,14 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
    padding-left: calc(1rem + 1.26em)
 }
 
-.menu-vertical .menu-item .menu-toggle::after {
+/* .menu-vertical .menu-item .menu-toggle::after {
    right: 1rem
 }
 
 [dir=rtl] .menu-vertical .menu-item .menu-toggle::after {
    right: auto;
    left: 1rem
-}
+} */
 
 .menu-vertical .menu-divider {
    margin-top: .5rem;
