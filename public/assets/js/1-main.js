@@ -1,16 +1,26 @@
-// Verifica os modulos, se o usuario tiver acesso da display block, senao remove a div
+// Inserir nome do usuário logado
+function inserir_nome() {
+   const user_name = localStorage.getItem('dataUser');
+   const nome_html = document.querySelector('.nome_html');
+
+   nome_html.textContent = user_name;
+}
+
+inserir_nome()
+
+// Verifica os módulos, se o usuário tiver acesso, exibe a div, senão remove a div
 function checkModules() {
    const modules = JSON.parse(localStorage.getItem('modules'));
 
    if (modules) {
       document.querySelectorAll('[module]').forEach(div => {
-      const moduleNumber = parseInt(div.getAttribute('module'));
-         if(!modules.includes(moduleNumber)) {
-            div.remove()
+         const module = div.getAttribute('module');
+         if (!modules.includes(module)) {
+            div.remove();
          } else {
-            div.style.display = 'block'
+            div.style.display = 'block';
          }
-      })
+      });
    }
 }
 
@@ -43,8 +53,8 @@ async function login() {
       // Armazene no localstorage o nome do usuário logado
       localStorage.setItem('dataUser', name);
 
-      // Redirecione para a página principal (ou qualquer outra página que você deseja)
-      window.location.href = 'dashboard';
+      // Verifica e redireciona para a primeira tela acessível
+      redirecionar_usuario(modules);
    } else {
       const error = await response.json();
       alert(error.message);
@@ -53,4 +63,17 @@ async function login() {
    }
 
    return false; // Impede a submissão padrão do formulário
+}
+
+function redirecionar_usuario(modules) {
+   const modulos_disponiveis = ["pedidos", "financeiro"]; // Inserir os modulos disponiveis
+
+   const primeiro_modulo_acessivel = modulos_disponiveis.find(module => modules.includes(module));
+
+   if (primeiro_modulo_acessivel) {
+      window.location.href = `${primeiro_modulo_acessivel}`;
+   } else {
+      // Se nenhum módulo estiver acessivel, redirecione para a pagina de modulos nao disponibilizados
+      window.location.href = 'sem-modulo'
+   }
 }
