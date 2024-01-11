@@ -26,8 +26,8 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
 
 
 // Routes
-app.use('/', listApp);
 app.use('/api', api);
+app.use('/', listApp);
 
 
 
