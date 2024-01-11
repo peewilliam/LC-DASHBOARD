@@ -3263,10 +3263,10 @@ fieldset:disabled .btn {
    --bs-dropdown-divider-margin-y: 0.5rem;
    --bs-dropdown-box-shadow: 0 0.25rem 1rem rgba(165, 163, 174, 0.45);
    --bs-dropdown-link-color: #5d596c;
-   --bs-dropdown-link-hover-color: #7367f0;
+   --bs-dropdown-link-hover-color: #2F74B5;
    --bs-dropdown-link-hover-bg: rgba(115, 103, 240, 0.08);
    --bs-dropdown-link-active-color: #fff;
-   --bs-dropdown-link-active-bg: #7367f0;
+   --bs-dropdown-link-active-bg: #2F74B5;
    --bs-dropdown-link-disabled-color: #c9c8ce;
    --bs-dropdown-item-padding-x: 1rem;
    --bs-dropdown-item-padding-y: 0.42rem;
@@ -3310,7 +3310,7 @@ fieldset:disabled .btn {
 
 .dropdown-menu-end[data-bs-popper] {
    right: 0;
-   left: auto
+   left: -100px;
 }
 
 @media(min-width: 576px) {
@@ -10047,7 +10047,7 @@ html:not([dir=rtl]) .input-group>.btn-group:last-child>.btn:not([class*=btn-outl
 .nav-tabs .nav-link:not(.active):focus,
 .nav-pills .nav-link:not(.active):hover,
 .nav-pills .nav-link:not(.active):focus {
-   color: #7367f0
+   color: #2F74B5
 }
 
 .nav-tabs:not(.nav-fill):not(.nav-justified) .nav-link,
