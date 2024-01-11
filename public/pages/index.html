@@ -70,7 +70,7 @@
             <h4 class="mb-1 pt-2">Bem Vindo!</h4>
             <p class="mb-4">Por favor, insira suas credenciais para acessar sua conta!</p>
 
-            <form id="formAuthentication" class="mb-3" action="/" method="POST">
+            <form id="formAuthentication" class="mb-3" method="POST">
               <div class="mb-3">
                 <label for="email" class="form-label">Usuário</label>
                 <input type="text" class="form-control" id="name" name="email-username" placeholder="Insira seu nome de usuário" autofocus>
@@ -88,15 +88,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="remember-me">
-                  <label class="form-check-label" for="remember-me">
-                    Lembre-me
-                  </label>
-                </div>
-              </div>
-              <div class="mb-3">
-                <button class="btn d-grid w-100" type="submit" style="background-color: #2F74B5; color: #FFF;" onclick="login()">Acessar</button>
+                <button class="btn d-grid w-100" type="button" style="background-color: #2F74B5; color: #FFF;" onclick="login()">Acessar</button>
               </div>
             </form>
 
