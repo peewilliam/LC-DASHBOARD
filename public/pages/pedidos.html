@@ -13,21 +13,8 @@
    <!-- Canonical SEO -->
    <link rel="canonical" href="https://1.envato.market/vuexy_admin">
 
-
-   <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-   <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5J3LMKC"></script>
-   <script>(function (w, d, s, l, i) {
-         w[l] = w[l] || []; w[l].push({
-            'gtm.start':
-               new Date().getTime(), event: 'gtm.js'
-         }); var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-               'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-5J3LMKC');</script>
-   <!-- End Google Tag Manager -->
-
    <!-- Favicon -->
-   <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico">
+   <link rel="icon" type="image/x-icon" href="/assets/img/favicon/icon.svg">
 
    <!-- Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,9 +32,7 @@
    <!-- Vendors CSS -->
    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css">
    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"> -->
    <link rel="stylesheet" href="/assets/vendor/libs/jkanban/jkanban.css">
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css"> -->
    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css">
    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css">
    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css">
@@ -59,6 +44,8 @@
 
    <!-- Helpers -->
    <script src="/assets/vendor/js/helpers.js"></script>
+
+   <script src="/assets/js/1-back-login.js"></script>
 
    <style type="text/css">
       .layout-menu-fixed .layout-navbar-full .layout-menu,
@@ -498,7 +485,7 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                            <li>
                               <a class="dropdown-item" href="pages-account-settings-account.html">
-                                 <div class="d-flex">
+                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0 me-3">
                                        <div class="avatar avatar-online">
                                           <img src="/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
@@ -506,7 +493,6 @@
                                     </div>
                                     <div class="flex-grow-1">
                                        <span class="fw-medium d-block nome_html">Nome do Usuário</span>
-                                       <small class="text-muted">Admin</small>
                                     </div>
                                  </div>
                               </a>
@@ -514,49 +500,16 @@
                            <li>
                               <div class="dropdown-divider"></div>
                            </li>
-                           <li>
-                              <a class="dropdown-item" href="pages-profile-user.html">
+                           <li module="usuarios">
+                              <a class="dropdown-item" href="usuarios">
                                  <i class="ti ti-user-check me-2 ti-sm"></i>
-                                 <span class="align-middle">My Profile</span>
+                                 <span class="align-middle">Usuários</span>
                               </a>
                            </li>
-                           <li>
-                              <a class="dropdown-item" href="pages-account-settings-account.html">
-                                 <i class="ti ti-settings me-2 ti-sm"></i>
-                                 <span class="align-middle">Settings</span>
-                              </a>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="pages-account-settings-billing.html">
-                                 <span class="d-flex align-items-center align-middle">
-                                    <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                                    <span class="flex-grow-1 align-middle">Billing</span>
-                                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
-                                 </span>
-                              </a>
-                           </li>
-                           <li>
-                              <div class="dropdown-divider"></div>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="pages-faq.html">
-                                 <i class="ti ti-help me-2 ti-sm"></i>
-                                 <span class="align-middle">FAQ</span>
-                              </a>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="pages-pricing.html">
-                                 <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                                 <span class="align-middle">Pricing</span>
-                              </a>
-                           </li>
-                           <li>
-                              <div class="dropdown-divider"></div>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                           <li style="cursor: pointer;" onclick="deslogar(this)">
+                              <a class="dropdown-item" target="_blank">
                                  <i class="ti ti-logout me-2 ti-sm"></i>
-                                 <span class="align-middle">Log Out</span>
+                                 <span class="align-middle">Sair</span>
                               </a>
                            </li>
                         </ul>
@@ -886,44 +839,21 @@
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
-
-
-      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-      <div class="drag-target"
-         style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-      </div>
-
    </div>
    <!-- / Layout wrapper -->
 
-   <!-- build:js assets/vendor/js/core.js -->
-   <!-- <script src="/assets/vendor/libs/jquery/jquery.js"></script> -->
    <script src="/assets/vendor/libs/popper/popper.js"></script>
    <script src="/assets/vendor/js/bootstrap.js"></script>
-   <script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
-   <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-   <script src="/assets/vendor/libs/hammer/hammer.js"></script>
-   <!-- <script src="/assets/vendor/libs/i18n/i18n.js"></script> -->
-   <!-- <script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script> -->
    <script src="/assets/vendor/js/menu.js"></script>
 
    <!-- endbuild -->
 
    <!-- Vendors JS -->
    <script src="/assets/vendor/libs/moment/moment.js"></script>
-   <script src="/assets/vendor/libs/flatpickr/flatpickr.js"></script>
-   <!-- <script src="/assets/vendor/libs/select2/select2.js"></script> -->
-   <!-- <script src="/assets/vendor/libs/jkanban/jkanban.js"></script> -->
-   <!-- <script src="/assets/vendor/libs/quill/katex.js"></script> -->
-   <!-- <script src="/assets/vendor/libs/quill/quill.js"></script> -->
 
    <!-- Main JS -->
    <script src="/assets/js/main.js"></script>
    <script src="/assets/js/1-main.js"></script>
-
-
-   <!-- Page JS -->
-   <!-- <script src="/assets/js/app-kanban.js"></script> -->
 </body>
 
 </html>
