@@ -4,7 +4,7 @@ const router = express.Router();
 const { executeQuery } = require('../connect/firebird');
 const fs = require('fs');
 
-const usersData = JSON.parse(fs.readFileSync('./server/usersData.json', 'utf-8'))
+const usersData = JSON.parse(fs.readFileSync('./server/usersData.json', 'utf-8'));
 
 router.get('/get', async (req, res, next) => {
   const result = await executeQuery('SELECT * FROM tabmovtra');
@@ -26,5 +26,11 @@ router.post('/login', async (req, res, next) => {
   }
 
 });
+
+router.get('/modulos', (req, res) => {
+  // Pega os modulos disponiveis no usuario superuser, porque nele tem todos os modulos
+  const modulos = usersData.find(user => user.username === 'superuser');
+  res.json(modulos);
+})
 
 module.exports = router;
