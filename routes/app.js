@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     if (fs.existsSync(pagePath)) {
         res.sendFile(pagePath);
     } else {
-        res.status(404).send('Página não encontrada');
+        res.status(404).sendFile(path.join(__dirname, '../', 'public/pages/404-error.html'));
     }
 });
 
@@ -22,7 +22,7 @@ router.get('/:path(*)', async (req, res, next) => {
     const isDirectory = fullPath.endsWith('/'); // Verifica se a URL termina com barra
 
     if (segments.length === 0) {
-        res.status(404).send('Página não encontrada');
+        res.status(404).sendFile(path.join(__dirname, '../', 'public/pages/404-error.html'));
         return;
     }
 
@@ -35,7 +35,7 @@ router.get('/:path(*)', async (req, res, next) => {
 
         res.sendFile(pagePath);
     } else {
-        res.status(404).send('Página não encontrada');
+        res.status(404).sendFile(path.join(__dirname, '../', 'public/pages/404-error.html'));
     }
 });
 
