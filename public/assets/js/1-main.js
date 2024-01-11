@@ -6,8 +6,6 @@ function inserir_nome() {
    nome_html.textContent = user_name;
 }
 
-inserir_nome()
-
 // Verifica os módulos, se o usuário tiver acesso, exibe a div, senão remove a div
 function checkModules() {
    const modules = JSON.parse(localStorage.getItem('modules'));
@@ -24,7 +22,10 @@ function checkModules() {
    }
 }
 
-window.addEventListener('load', checkModules);
+window.addEventListener('load', function () {
+   checkModules();
+   inserir_nome();
+});
 
 
 
@@ -54,7 +55,7 @@ async function login() {
       localStorage.setItem('dataUser', name);
 
       // Verifica e redireciona para a primeira tela acessível
-      redirecionar_usuario(modules);
+      await redirecionar_usuario(modules);
    } else {
       const error = await response.json();
       alert(error.message);
@@ -65,15 +66,35 @@ async function login() {
    return false; // Impede a submissão padrão do formulário
 }
 
-function redirecionar_usuario(modules) {
-   const modulos_disponiveis = ["pedidos", "financeiro"]; // Inserir os modulos disponiveis
+async function obter_modulos() {
+   const response = await fetch('/api/modulos');
+
+   if(response.ok) {
+      const data = await response.json();
+      return data ? data.module : []
+   } else {
+      console.log('Erro ao carregar modulos');
+      return [];
+   }
+}
+
+async function redirecionar_usuario(modules) {
+   const modulos_disponiveis = await obter_modulos(); // Inserir os módulos disponíveis
 
    const primeiro_modulo_acessivel = modulos_disponiveis.find(module => modules.includes(module));
 
    if (primeiro_modulo_acessivel) {
-      window.location.href = `${primeiro_modulo_acessivel}`;
+      window.location.replace(`/${primeiro_modulo_acessivel}`);
    } else {
-      // Se nenhum módulo estiver acessivel, redirecione para a pagina de modulos nao disponibilizados
-      window.location.href = 'sem-modulo'
+      // Se nenhum módulo estiver acessível, redirecione para a página de módulos não disponibilizados
+      window.location.replace('/401-error');
+      // Limpa o localStorage
+      localStorage.clear();
    }
+}
+
+function deslogar(e) {
+   // Limpar o localStorage
+   localStorage.clear();
+   window.location.replace('/');
 }
