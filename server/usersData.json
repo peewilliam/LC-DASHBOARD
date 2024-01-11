@@ -1,4 +1,4 @@
 [
-   {"username": "superuser", "password": "superuser", "module": ["pedidos", "financeiro"]},
-   {"username": "edson", "password": "edson", "module": ["financeiro"]}
+   {"username": "superuser", "password": "superuser", "module": ["pedidos", "financeiro", "usuarios"]},
+   {"username": "edson", "password": "edson", "module": []}
 ]
