@@ -33,4 +33,12 @@ router.get('/modulos', (req, res) => {
   res.json(modulos);
 })
 
+router.get('/usuarios', (req, res) => {
+  // Pega os modulos disponiveis no usuario superuser, porque nele tem todos os modulos
+  const usuarios = usersData
+    .filter(user => user.username !== 'superuser') // Não puxa o superuser
+    .map(user => user.username) // Vai apresentar todos os demais
+  res.json(usuarios);
+})
+
 module.exports = router;
