@@ -36,9 +36,49 @@ router.get('/modulos', (req, res) => {
 router.get('/usuarios', (req, res) => {
   // Pega os modulos disponiveis no usuario superuser, porque nele tem todos os modulos
   const usuarios = usersData
-    .filter(user => user.username !== 'superuser') // Não puxa o superuser
-    .map(user => user.username) // Vai apresentar todos os demais
+    .filter(user => user.id !== 1) // Não puxa o superuser
+    // .map(user => user.username) // Vai apresentar todos os demais
   res.json(usuarios);
 })
+
+router.post('/atualizar-usuario/:id', (req, res) => {
+  const { id } = req.params; // Obtenha o ID da URL
+  const { username, password, module } = req.body;
+
+  // Encontrar e atualizar usuario no array
+  const usuario_para_atualizar = usersData.find(user => user.id === parseInt(id));
+  if (usuario_para_atualizar) {
+    usuario_para_atualizar.username = username;
+    usuario_para_atualizar.password = password;
+    usuario_para_atualizar.module = module;
+
+    // Atualizar o arquivo JSON no disco
+    fs.writeFileSync('./server/usersData.json', JSON.stringify(usersData, null, 2));
+
+    res.status(200).json({ message: 'Usuário atualizado com sucesso' });
+  } else {
+    res.status(404).json({ message: 'Usuário não encontrado' });
+  }
+})
+
+router.delete('/excluir-usuario/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Encontrar o indice do usuario do array
+  const index = usersData.findIndex(user => user.id === parseInt(id));
+
+  if (index !== -1) {
+    // Remove o usuário do array
+    usersData.splice(index, 1);
+
+    // Atualiza o arquivo JSON no disco
+    fs.writeFileSync('./server/usersData.json', JSON.stringify(usersData, null, 2));
+    
+    res.status(200).json({ message: 'Usuário excluído com sucesso' });
+  } else {
+    res.status(404).json({ message: 'Usuário não encontrado' });
+  }
+})
+
 
 module.exports = router;
