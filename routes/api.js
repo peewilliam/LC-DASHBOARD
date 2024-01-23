@@ -80,5 +80,29 @@ router.delete('/excluir-usuario/:id', (req, res) => {
   }
 })
 
+router.post('/inserir-usuario', (req, res) => {
+  const { username, password, module } = req.body;
+
+  // Obter o ultimo ID existente e gerar um novo ID
+  const maiorId = Math.max(...usersData.map(user => user.id), 0);
+  const novoId = maiorId + 1;
+
+  // Criar novo usuario
+  const novoUsuario = {
+    id: novoId,
+    username,
+    password,
+    module
+  };
+
+  // Adicionar o novo usuário ao array
+  usersData.push(novoUsuario);
+
+  // Atualiza o arquivo JSON no disco
+  fs.writeFileSync('./server/usersData.json', JSON.stringify(usersData, null, 2));
+
+  res.status(201).json({ message: 'Usuário inserido com sucesso', novoUsuario });
+})
+
 
 module.exports = router;

@@ -541,12 +541,65 @@
                </div>
                <!-- / Content -->
 
-               <!-- Modal -->
-               <div class="modal" id="editUser" tabindex="-1" style="display: none; background-color: rgba(75, 70, 92, 0.4);" aria-modal="true" role="dialog">
+               <!-- Modal Inserir -->
+               <div class="modal modal-inserir" id="insertUser" tabindex="-1" style="display: none; background-color: rgba(75, 70, 92, 0.4);" aria-modal="true" role="dialog">
+                  <div class="modal-dialog modal-lg modal-simple modal-insert-user" data-select2-id="88">
+                     <div class="modal-content p-3 p-md-5" data-select2-id="87">
+                        <div class="modal-body" data-select2-id="86">
+                           <button type="button" class="btn-close btn-close-modal-inserir" data-bs-dismiss="modal" aria-label="Close"></button>
+                           <div class="text-center mb-4">
+                              <h3 class="mb-2">Adicionar usuário</h3>
+                           </div>
+                           <form id="insertUserForm" class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework" onsubmit="return false"
+                              novalidate="novalidate" data-select2-id="insertUserForm">
+                              <div class="col-12 col-md-6 fv-plugins-icon-container">
+                                 <label class="form-label" for="modalInsertUserFirstName">Username</label>
+                                 <input type="text" id="modalInsertUserFirstName" name="modalInsertUserFirstName" class="form-control" placeholder="Username" pattern="[a-z]+">
+                                 <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                                 </div>
+                              </div>
+                              <div class="col-12 col-md-6 form-password-toggle">
+                                 <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password">Senha</label>
+                                 </div>
+                                 <div class="input-group input-group-merge">
+                                    <input type="password" id="password-modal-inserir" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" pattern="[a-z]+"/>
+                                    <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                                 </div>
+                                 </div>
+
+                              <div class="col-12 col-md-12" data-select2-id="85">
+                                 <label class="form-label" for="modalInsertUserLanguage">Módulos</label>
+                                 <div class="position-relative" data-select2-id="84">
+                                    <div class="position-relative" data-select2-id="83">
+                                       <div class="position-relative" data-select2-id="9">
+                                          <select id="modalInsertUserLanguage" name="modalInsertUserLanguage" class="select2 form-select select2-hidden-accessible modulos-usuarios modulos-usuarios-modal-inserir" multiple="" tabindex="-1" aria-hidden="true" data-select2-id="modalInsertUserLanguage" data-placeholder="  Selecione os módulos">
+                                             <option value="" data-select2-id="89">Selecionar</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               
+               
+                              <div class="col-12 text-center">
+                                 <button type="submit" id="btnSalvar-modal-inserir" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">Salvar</button>
+                                 <button type="reset" class="btn btn-label-secondary waves-effect btn-cancelar btn-cancelar-modal-inserir" data-bs-dismiss="modal"
+                                    aria-label="Close">Cancelar</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Fim Modal Inserir -->
+
+               <!-- Modal Editar -->
+               <div class="modal modal-editar" id="editUser" tabindex="-1" style="display: none; background-color: rgba(75, 70, 92, 0.4);" aria-modal="true" role="dialog">
                   <div class="modal-dialog modal-lg modal-simple modal-edit-user" data-select2-id="88">
                      <div class="modal-content p-3 p-md-5" data-select2-id="87">
                         <div class="modal-body" data-select2-id="86">
-                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           <button type="button" class="btn-close btn-close-modal-editar" data-bs-dismiss="modal" aria-label="Close"></button>
                            <div class="text-center mb-4">
                               <h3 class="mb-2">Editar informações do usuário</h3>
                            </div>
@@ -563,7 +616,7 @@
                                    <label class="form-label" for="password">Senha</label>
                                  </div>
                                  <div class="input-group input-group-merge">
-                                   <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" pattern="[a-z]+"/>
+                                   <input type="password" id="password-modal-editar" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" pattern="[a-z]+"/>
                                    <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
                                  </div>
                                </div>
@@ -573,7 +626,7 @@
                                  <div class="position-relative" data-select2-id="84">
                                     <div class="position-relative" data-select2-id="83">
                                        <div class="position-relative" data-select2-id="9">
-                                          <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select select2-hidden-accessible modulos-usuarios" multiple="" tabindex="-1" aria-hidden="true" data-select2-id="modalEditUserLanguage" data-placeholder="  Selecione os módulos">
+                                          <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select select2-hidden-accessible modulos-usuarios modulos-usuarios-modal-editar" multiple="" tabindex="-1" aria-hidden="true" data-select2-id="modalEditUserLanguage" data-placeholder="  Selecione os módulos">
                                              <option value="" data-select2-id="89">Selecionar</option>
                                           </select>
                                        </div>
@@ -583,8 +636,8 @@
                
                
                               <div class="col-12 text-center">
-                                 <button type="submit" id="btnSalvar" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">Salvar</button>
-                                 <button type="reset" class="btn btn-label-secondary waves-effect btn-cancelar" data-bs-dismiss="modal"
+                                 <button type="submit" id="btnSalvar-modal-editar" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">Salvar</button>
+                                 <button type="reset" class="btn btn-label-secondary waves-effect btn-cancelar btn-cancelar-modal-editar" data-bs-dismiss="modal"
                                     aria-label="Close">Cancelar</button>
                               </div>
                            </form>
@@ -592,7 +645,7 @@
                      </div>
                   </div>
                </div>
-               <!-- Modal -->
+               <!-- Fim Modal Editar -->
 
                <!-- Footer -->
                <footer class="content-footer footer bg-footer-theme">
