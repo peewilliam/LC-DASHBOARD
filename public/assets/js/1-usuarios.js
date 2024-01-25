@@ -35,9 +35,10 @@ async function usuarios() {
                                              <i class="ti ti-dots-vertical"></i>
                                           </a>
                                           <div class="dropdown-menu dropdown-menu-end m-0">
-                                             <a href="javascript:;" class="dropdown-item" onclick="clique_btn_editar(this)">Editar</a>
+                                             <button type="button" class="waves-effect waves-light dropdown-item" data-bs-toggle="modal" data-bs-target="#editUser" onclick="clique_btn_editar(this)"> Editar </button>
                                              <div class="dropdown-divider"></div>
-                                             <a href="javascript:;" class="dropdown-item text-danger delete-record" onclick="clique_btn_remover(this)">Remover</a>
+                                             <button type="button" class="waves-effect waves-light dropdown-item text-danger delete-record" 
+                                             onclick="clique_btn_remover(this)"> Remover </button>
                                           </div>
                                        </div>
                                     </td>
@@ -66,47 +67,12 @@ function verificar_espaços(inputElement) {
    }
 }
 
-// Função de clique no botao remover
-function clique_btn_remover(e) {
-   const parentRow = e.closest('tr');
-   const id_user = parentRow.getAttribute('id-user');
-
-   // Verifica se o ID do usuário é valido
-   if (id_user !== null) {
-      if(confirm('Tem certeza que deseja remover o usuário?')) {
-         // Chama a função para excluir usuário
-         excluir_usuario(id_user);
-      } else {
-         console.error('ID do usuário não encontrado ou inválido');
-      }
-   }
-}
-
-// Função que exclui o usuário
-async function excluir_usuario(id_user) {
-   try {
-      const response = await fetch(`/api/excluir-usuario/${id_user}`, {
-         method: 'DELETE',
-      });
-
-      if (response.ok) {
-         // Faça algo após a exclusão bem-sucedida
-         await usuarios();
-      } else {
-         const errorResponse = await response.text();
-         console.error('Erro ao excluir usuário: ', errorResponse);
-      }
-   } catch (error) {
-      console.error('Erro ao excluir usuário: ', error)
-   }
-}
-
 
 
 /* ========== EDITAR ========== */
 
 // Inserir modulos no campo de seleção de modulos no usuario
-async function inserir_modulos_usuarios(usuario) {
+async function inserir_modulos_usuarios_modal_editar(usuario) {
    // Verifica se a URL é /usuarios
    if (pagina_usuarios()) {
       const modulos = await obter_modulos();
@@ -163,13 +129,13 @@ async function clique_btn_editar(e) {
       modulos_usuarios.innerHTML = '';
 
       if (usuarioEmEdicao) {
-         modal.classList.add('show');
-         modal.style.display = 'block';
+         // modal.style.display = 'block';
+         // modal.classList.add('show');
          modalEditUserFirstName.value = usuarioEmEdicao.username;
          password.value = usuarioEmEdicao.password;
 
          // Inserir módulos do usuário em edição
-         await inserir_modulos_usuarios(usuarioEmEdicao);
+         await inserir_modulos_usuarios_modal_editar(usuarioEmEdicao);
 
          // Adiciona o evento de clique fora do modal
          clique_fora_modal_editar();
@@ -181,14 +147,49 @@ async function clique_btn_editar(e) {
    }
 }
 
+// Função de clique no botao remover
+function clique_btn_remover(e) {
+   const parentRow = e.closest('tr');
+   const id_user = parentRow.getAttribute('id-user');
+
+   // Verifica se o ID do usuário é valido
+   if (id_user !== null) {
+      if(confirm('Tem certeza que deseja remover o usuário?')) {
+         // Chama a função para excluir usuário
+         excluir_usuario(id_user);
+      } else {
+         console.error('ID do usuário não encontrado ou inválido');
+      }
+   }
+}
+
+// Função que exclui o usuário
+async function excluir_usuario(id_user) {
+   try {
+      const response = await fetch(`/api/excluir-usuario/${id_user}`, {
+         method: 'DELETE',
+      });
+
+      if (response.ok) {
+         // Faça algo após a exclusão bem-sucedida
+         await usuarios();
+      } else {
+         const errorResponse = await response.text();
+         console.error('Erro ao excluir usuário: ', errorResponse);
+      }
+   } catch (error) {
+      console.error('Erro ao excluir usuário: ', error)
+   }
+}
+
 // Função auxiliar para fechar o modal e manipular os módulos
 function fechar_modal_editar() {
    const modal = document.querySelector('#editUser');
-   const modalContent = document.querySelector('.modal-edit-user');
+   const modalContent = document.querySelector('.modal-editar');
    const modulosUsuarios = document.querySelector('.modulos-usuarios-modal-editar');
 
-   modalContent.classList.remove('fade', 'show');
-   modal.style.display = 'none';
+   // modalContent.classList.remove('show');
+   // modal.style.display = 'none';
 
    if (modulosUsuarios) {
        // Remove a classe 'selected' de todas as opções
@@ -310,7 +311,7 @@ username_input.addEventListener('input', function() {
 
 /* ========== INSERIR ========== */
 // Inserir modulos no campo de seleção de modulos no usuario
-async function inserir_modulos_usuarios() {
+async function inserir_modulos_usuarios_modal_inserir() {
    // Verifica se a URL é /usuarios
    if (pagina_usuarios()) {
       const modulos = await obter_modulos();
@@ -353,10 +354,10 @@ async function btn_cadastrar(e) {
    password.value = '';
    modulos_usuarios.innerHTML = '';
 
-   modal.classList.add('show');
-   modal.style.display = 'block';
+   // modal.classList.add('show');
+   // modal.style.display = 'block';
 
-   await inserir_modulos_usuarios();
+   await inserir_modulos_usuarios_modal_inserir();
 
 
    // Fecha o modal ao clicar fora dele
@@ -403,8 +404,7 @@ btnSaveInserir.addEventListener('click', salvar_usuario_inserir);
 
 // Função auxiliar para fechar o modal e manipular os módulos
 function fechar_modal_inserir() {
-   const modal = document.querySelector('#insertUser');
-   const modalContent = document.querySelector('.modal-insert-user');
+   const modal_inserir = document.querySelector('.modal-inserir.show')
    const modulosUsuarios = document.querySelector('.modulos-usuarios-modal-inserir');
 
    const usuarios = document.querySelector('.btn_usuarios');
@@ -414,29 +414,28 @@ function fechar_modal_inserir() {
    const modalInsertUserFirstName = document.querySelector('#modalInsertUserFirstName');
    const password_modal_inserir = document.querySelector('#password-modal-inserir');
 
-   // Remove os estilos do botão Usuarios
-   cadastrar.style.backgroundColor = 'transparent';
-   cadastrar.style.boxShadow = 'none';
-   cadastrar.style.color = '#5d596c';
-   cadastrar.classList.remove('active');
+   if (!modal_inserir) {
+      // Remove os estilos do botão Usuarios
+      cadastrar.style.backgroundColor = 'transparent';
+      cadastrar.style.boxShadow = 'none';
+      cadastrar.style.color = '#5d596c';
+      cadastrar.classList.remove('active');
 
-   // Adiciona os estilos no botão Cadastrar
-   usuarios.style.backgroundColor = '#2F74B5'
-   usuarios.style.color = '#FFF'
-   usuarios.classList.add('active');
+      // Adiciona os estilos no botão Cadastrar
+      usuarios.style.backgroundColor = '#2F74B5'
+      usuarios.style.color = '#FFF'
+      usuarios.classList.add('active');
 
-   modalContent.classList.remove('fade', 'show');
-   modal.style.display = 'none';
+      modalInsertUserFirstName.value = '';
+      password_modal_inserir.value = '';
 
-   modalInsertUserFirstName.value = '';
-   password_modal_inserir.value = '';
-
-   if (modulosUsuarios) {
-       // Remove a classe 'selected' de todas as opções
-       const options = modulosUsuarios.options;
-       for (let i = 0; i < options.length; i++) {
-           options[i].removeAttribute('selected');
-       }
+      if (modulosUsuarios) {
+         // Remove a classe 'selected' de todas as opções
+         const options = modulosUsuarios.options;
+         for (let i = 0; i < options.length; i++) {
+            options[i].removeAttribute('selected');
+         }
+      }
    }
 }
 
