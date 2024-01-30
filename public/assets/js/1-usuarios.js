@@ -398,9 +398,13 @@ async function btn_cadastrar(e) {
 
 // Botao para salvar/criar novo usuario
 async function salvar_usuario_inserir() {
-   const nome_usuario = document.querySelector('#modalInsertUserFirstName').value;
-   const senha = document.querySelector('#password-modal-inserir').value;
-   const modulos_selecionados = $('.modulos-usuarios-modal-inserir').val();
+   const usernameInputInserir = document.getElementById('modalInsertUserFirstName');
+   const passwordInputInserir = document.getElementById('password-modal-inserir');
+   const modulosInputInserir = document.querySelector('.modulos-usuarios-modal-inserir');
+
+   const nome_usuario = usernameInputInserir.value;
+   const senha = passwordInputInserir.value;
+   const modulos_selecionados = Array.from(modulosInputInserir.selectedOptions).map(option => option.value);
 
    const dados_usuarios = {
       username: nome_usuario,
@@ -425,14 +429,35 @@ async function salvar_usuario_inserir() {
       } else {
          console.error('Erro ao inserir usuário');
       }
-   } catch (erro){
+   } catch (erro) {
       console.error('Erro ao enviar requisição: ', erro);
    }
 }
 
-// Evento de clique no botão "Salvar"
+const usernameInputInserir = document.getElementById('modalInsertUserFirstName');
+const passwordInputInserir = document.getElementById('password-modal-inserir');
 const btnSaveInserir = document.getElementById('btnSalvar-modal-inserir');
+
+// Adiciona manipuladores de eventos para os campos de entrada relevantes
+usernameInputInserir.addEventListener('input', verificarCampos);
+passwordInputInserir.addEventListener('input', verificarCampos);
+
+// Função para verificar os campos e habilitar/desabilitar o botão "Salvar"
+function verificarCampos() {
+   const nome_usuario = usernameInputInserir.value;
+   const senha = passwordInputInserir.value;
+   
+   if (nome_usuario.trim().length >= 4 && senha.trim().length >= 4) {
+      btnSaveInserir.disabled = false; // Habilita o botão
+   } else {
+      btnSaveInserir.disabled = true; // Desabilita o botão
+   }
+}
+
+
+// Evento de clique no botão "Salvar"
 btnSaveInserir.addEventListener('click', salvar_usuario_inserir);
+
 
 // Função auxiliar para fechar o modal e manipular os módulos
 function fechar_modal_inserir() {
@@ -445,6 +470,7 @@ function fechar_modal_inserir() {
    // Campos Inputs
    const modalInsertUserFirstName = document.querySelector('#modalInsertUserFirstName');
    const password_modal_inserir = document.querySelector('#password-modal-inserir');
+   const btnSaveInserir = document.getElementById('btnSalvar-modal-inserir');
 
    if (!modal_inserir) {
       // Remove os estilos do botão Usuarios
@@ -460,6 +486,7 @@ function fechar_modal_inserir() {
 
       modalInsertUserFirstName.value = '';
       password_modal_inserir.value = '';
+      btnSaveInserir.setAttribute('disabled', 'true')
 
       if (modulosUsuarios) {
          // Remove a classe 'selected' de todas as opções

@@ -10,11 +10,9 @@
     ]
   },
   {
-    "id": 3,
-    "username": "teste2",
-    "password": "teste",
-    "module": [
-      "pedidos"
-    ]
+    "id": 5,
+    "username": "ederson",
+    "password": "afsdfdsfdsf",
+    "module": []
   }
 ]
