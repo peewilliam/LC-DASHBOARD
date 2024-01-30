@@ -1,5 +1,4 @@
-<html lang="pt-br" class="light-style layout-compact layout-menu-fixed" dir="ltr" data-theme="theme-default"
-   data-assets-path="/assets/" data-template="vertical-menu-template">
+<html lang="pt-br" class="light-style layout-compact layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template">
 
 <head>
    <meta charset="utf-8">
@@ -29,17 +28,11 @@
    <link rel="stylesheet" href="/assets/css/demo.css">
 
    <!-- Vendors CSS -->
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"> -->
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"> -->
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"> -->
    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css">
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/@form-validation/umd/styles/index.min.css"> -->
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/bs-stepper/bs-stepper.css"> -->
-
-   <!-- Page CSS -->
 
    <!-- Helpers -->
    <script src="/assets/vendor/js/helpers.js"></script>
+   <script src="/assets/js/1-back-login.js"></script>
 
    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
    <script src="/assets/js/config.js"></script>
@@ -80,8 +73,8 @@
                <!-- Dashboard menu start -->
                <li class="menu-item" module="pedidos">
                   <a href="pedidos" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-messages"></i>
-                    <div data-i18n="Pedidos">Pedidos</div>
+                     <i class="menu-icon tf-icons ti ti-list-details"></i>
+                     <div data-i18n="Pedidos">Pedidos</div>
                   </a>
                </li>
                <li class="menu-item" module="financeiro">
@@ -99,7 +92,7 @@
          <div class="layout-page">
 
             <!-- Navbar -->
-            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar" style="width: 6.5%;">
+            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar" >
                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
                   <a class="nav-item nav-link px-0 me-xl-4">
                      <i class="ti ti-menu-2 ti-sm"></i>
@@ -107,6 +100,15 @@
                </div>
 
                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                  <div class="navbar-nav align-items-center">
+                     <div class="nav-item navbar-search-wrapper mb-0">
+                       <div class="nav-item nav-link search-toggler d-flex align-items-center px-0" >
+                         <i class="ti ti-search ti-md me-2"></i>
+                         <input type="text" class="form-control search-input container-xxl border-0 tt-input" id="inputPesquisar" placeholder="Pesquisar por usuário" aria-label="Pesquisar por usuário" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; width: 30vw; min-width: 275px;">
+                       </div>
+                     </div>
+                   </div>
+
                   <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                      <!-- User -->
@@ -339,17 +341,21 @@
    </div>
    <!-- / Layout wrapper -->
 
-   <script src="/assets/vendor/libs/jquery/jquery.js"></script>
-   <script src="/assets/vendor/libs/popper/popper.js"></script>
-   <script src="/assets/vendor/js/bootstrap.js"></script>
+   
    <script src="/assets/vendor/js/menu.js"></script>
+   <script src="/assets/js/main.js"></script>
+   <script src="/assets/vendor/libs/jquery/jquery.js"></script>
+   <script src="/assets/vendor/js/bootstrap.js"></script>
+
+   <!-- Datatables JS -->
+   <script type="text/javascript" charset="utf8" src="/assets/vendor/libs/datatables-novo/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript" charset="utf8" src="/assets/vendor/libs/datatables-novo/jquery.dataTables.js"></script>
+
    <script src="/assets/vendor/libs/select2/select2.js"></script>
    <script src="/assets/js/modal-edit-user.js"></script>
    
 
-   <!-- Main JS -->
-   <script src="/assets/js/main.js"></script>
-
+   <!-- Arquivos Criados -->
    <script src="/assets/js/1-main.js"></script>
    <script src="/assets/js/1-usuarios.js"></script>
 </body>
