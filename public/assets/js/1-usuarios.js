@@ -8,48 +8,65 @@ async function usuarios() {
    const response = await fetch('/api/usuarios');
 
    if (response.ok) {
-      const data = await response.json();
-      const usuarios = document.querySelector('.usuarios');
+      try {
+         const responseData = await response.json();
 
-      // Limpa a tabela antes de adicionar os novos usuários
-      usuarios.innerHTML = '';
+         // Verifica se existe o item data para inserir os dados na função
+         if (responseData.data) {
+            atualizarTabelaUsuarios(responseData.data);
+            
+         }
 
-      data.forEach(username => {
-         const duas_primeiras_letras = username.username.slice(0, 2);
-         const html_usuarios = `<tr id-user="${username.id}">
-                                    <td class="sorting_1" colspan="2">
-                                       <div class="d-flex justify-content-left align-items-center">
-                                          <div class="avatar-wrapper">
-                                             <div class="avatar me-2">
-                                             <span class="avatar-initial rounded-circle" style="text-transform: uppercase; background-color: #ffcc005b !important; color: #2f74b5;">${duas_primeiras_letras}</span>
-                                             </div>
-                                          </div>
-                                          <div class="d-flex flex-column">
-                                             <span class="text-truncate fw-medium">${username.username}</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td>
-                                       <div class="d-inline-block" style="margin-left: 10px;">
-                                          <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                             <i class="ti ti-dots-vertical"></i>
-                                          </a>
-                                          <div class="dropdown-menu dropdown-menu-end m-0">
-                                             <button type="button" class="waves-effect waves-light dropdown-item" data-bs-toggle="modal" data-bs-target="#editUser" onclick="clique_btn_editar(this)"> Editar </button>
-                                             <div class="dropdown-divider"></div>
-                                             <button type="button" class="waves-effect waves-light dropdown-item text-danger delete-record" 
-                                             onclick="clique_btn_remover(this)"> Remover </button>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>`;
-
-         usuarios.innerHTML += html_usuarios;
-      });
+      } catch (error) {
+         console.error('Erro ao processar os dados:', error);
+      }
+      
    } else {
       console.log('Erro na requisição:', response.status);
    }
 }
+
+// Função para atualizar a tabela de usuários na interface
+function atualizarTabelaUsuarios(data) {
+   const usuarios = document.querySelector('.usuarios');
+
+   // Limpa a tabela antes de adicionar os novos usuários
+   usuarios.innerHTML = '';
+
+   data.forEach(username => {
+      const duas_primeiras_letras = username.username.slice(0, 2);
+      const html_usuarios = `<tr id-user="${username.id}">
+                                 <td class="sorting_1" colspan="2">
+                                    <div class="d-flex justify-content-left align-items-center">
+                                       <div class="avatar-wrapper">
+                                          <div class="avatar me-2">
+                                             <span class="avatar-initial rounded-circle" style="text-transform: uppercase; background-color: #ffcc005b !important; color: #2f74b5;">${duas_primeiras_letras}</span>
+                                          </div>
+                                       </div>
+                                       <div class="d-flex flex-column">
+                                          <span class="text-truncate fw-medium">${username.username}</span>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td>
+                                    <div class="d-inline-block" style="margin-left: 10px;">
+                                       <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                          <i class="ti ti-dots-vertical"></i>
+                                       </a>
+                                       <div class="dropdown-menu dropdown-menu-end m-0">
+                                          <button type="button" class="waves-effect waves-light dropdown-item" data-bs-toggle="modal" data-bs-target="#editUser" onclick="clique_btn_editar(this)"> Editar </button>
+                                          <div class="dropdown-divider"></div>
+                                          <button type="button" class="waves-effect waves-light dropdown-item text-danger delete-record" 
+                                          onclick="clique_btn_remover(this)"> Remover </button>
+                                       </div>
+                                    </div>
+                                 </td>
+                              </tr>`;
+
+      usuarios.innerHTML += html_usuarios;
+   });
+}
+
 
 // Converter letras do username e password para minusculas
 function converter_para_minusculas(inputElement) {
@@ -93,12 +110,27 @@ function verifica_modulo_selecionado(modulo, usuario) {
    return usuario && usuario.module && usuario.module.includes(modulo);
 }
 
-// Função assíncrona para obter informações do usuário
+// Função assíncrona para obter informações do usuário com base no ID
 async function obter_dados_usuarios(id) {
    const response = await fetch('/api/usuarios');
-   const data = await response.json();
-   return data.find(user => user.id === id);
+   const responseData = await response.json();
+
+   // Verifica se existe o item data para inserir os dados na função
+   if(responseData.data) {
+      const usuarioEncontrado = responseData.data.find(user => user.id === id);
+
+      if (usuarioEncontrado) {
+         return usuarioEncontrado;
+      } else {
+         console.error('Usuário não encontrado com o ID:', id);
+         return null;
+      }
+   } else {
+      console.error('Erro ao processar os dados:', responseData);
+      return null;
+   }
 }
+
 
 // Função para manipular o clique e chamar a função assíncrona
 async function clique_btn_editar(e) {
@@ -476,3 +508,31 @@ username_input_inserir.addEventListener('input', function() {
 })
 
 /* ========== FIM INSERIR ========== */
+
+
+
+
+// ========== PESQUISA ========== //
+
+async function realizarPesquisa() {
+   const termoPesquisa = document.getElementById('inputPesquisar').value.toLowerCase();
+
+   if (termoPesquisa.length >= 3) {
+      const response = await Thefetch(`/api/usuarios?search=${termoPesquisa}`);
+      atualizarTabelaUsuarios(response.data);
+
+   } else if (termoPesquisa.length === 0){
+      const response = await Thefetch('/api/usuarios');
+      atualizarTabelaUsuarios(response.data);
+   }
+}
+
+// Adicione um event listener ao campo de pesquisa
+document.getElementById('inputPesquisar').addEventListener('keyup', function(event) {
+   const value = document.getElementById('inputPesquisar').value;
+   if (event.keyCode == 13 || value.length === 0) {
+      realizarPesquisa();
+   }
+});
+
+// ========== FIM PESQUISA ========== //
