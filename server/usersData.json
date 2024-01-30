@@ -10,13 +10,11 @@
     ]
   },
   {
-    "id": 2,
-    "username": "ederson",
-    "password": "ederson",
+    "id": 3,
+    "username": "teste2",
+    "password": "teste",
     "module": [
-      "pedidos",
-      "financeiro",
-      "usuarios"
+      "pedidos"
     ]
   }
 ]
