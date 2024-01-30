@@ -2,11 +2,9 @@
 
 <head>
    <meta charset="utf-8">
-   <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
    <title>Pedidos - LC Transportes</title>
-
 
    <meta name="description" content="Start your development with a Dashboard for Bootstrap 5">
    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
@@ -27,359 +25,17 @@
    <!-- Core CSS -->
    <link rel="stylesheet" href="/assets/css/demo.css">
 
-   <!-- Vendors CSS -->
-   <!-- <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css">
-   <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
-   <link rel="stylesheet" href="/assets/vendor/libs/jkanban/jkanban.css">
-   <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css">
-   <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css">
-   <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css">
-   <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css"> -->
+   <!-- DataTables -->
+   <link rel="stylesheet" type="text/css" rel="stylesheet" href="/assets/vendor/libs/datatables-novo/jquery.dataTables.css">
 
    <!-- Page CSS -->
-
    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css">
 
    <!-- Helpers -->
    <script src="/assets/vendor/js/helpers.js"></script>
-
    <script src="/assets/js/1-back-login.js"></script>
 
-   <style type="text/css">
-      .layout-menu-fixed .layout-navbar-full .layout-menu,
-      .layout-menu-fixed-offcanvas .layout-navbar-full .layout-menu {
-         top: 62px !important;
-      }
 
-      .layout-page {
-         padding-top: 62px !important;
-      }
-
-      .content-wrapper {
-         padding-bottom: 56px !important;
-      }
-   </style>
-   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-   <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-   <!-- <script src="/assets/vendor/js/template-customizer.js"></script> -->
-
-   <style>
-      #template-customizer {
-         font-family: "Public Sans", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
-         font-size: inherit !important;
-         position: fixed;
-         top: 0;
-         right: 0;
-         height: 100%;
-         z-index: 99999999;
-         display: -webkit-box;
-         display: -ms-flexbox;
-         display: flex;
-         -webkit-box-orient: vertical;
-         -webkit-box-direction: normal;
-         -ms-flex-direction: column;
-         flex-direction: column;
-         width: 400px;
-         background: #fff;
-         -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2);
-         box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2);
-         -webkit-transition: all .2s ease-in;
-         -o-transition: all .2s ease-in;
-         transition: all .2s ease-in;
-         -webkit-transform: translateX(420px);
-         -ms-transform: translateX(420px);
-         transform: translateX(420px)
-      }
-
-      #template-customizer h5 {
-         position: relative;
-         font-size: 11px
-      }
-
-      #template-customizer>h5 {
-         flex: 0 0 auto
-      }
-
-      #template-customizer .disabled {
-         color: #d1d2d3 !important
-      }
-
-      #template-customizer .form-label {
-         font-size: .9375rem
-      }
-
-      #template-customizer .form-check-label {
-         font-size: .8125rem
-      }
-
-      #template-customizer .template-customizer-t-panel_header {
-         font-size: 1.125rem
-      }
-
-      #template-customizer.template-customizer-open {
-         -webkit-transition-delay: .1s;
-         -o-transition-delay: .1s;
-         transition-delay: .1s;
-         -webkit-transform: none !important;
-         -ms-transform: none !important;
-         transform: none !important
-      }
-
-      #template-customizer.template-customizer-open .custom-option.checked {
-         color: var(--bs-primary);
-         border-width: 2px
-      }
-
-      #template-customizer.template-customizer-open .custom-option.checked .custom-option-content {
-         border: none
-      }
-
-      #template-customizer.template-customizer-open .custom-option .custom-option-content {
-         border: 1px solid rgba(0, 0, 0, 0)
-      }
-
-      #template-customizer .template-customizer-header a:hover {
-         color: inherit !important
-      }
-
-      #template-customizer .template-customizer-open-btn {
-         position: absolute;
-         top: 180px;
-         left: 0;
-         z-index: -1;
-         display: block;
-         width: 42px;
-         height: 42px;
-         border-top-left-radius: 15%;
-         border-bottom-left-radius: 15%;
-         background: var(--bs-primary);
-         color: #fff !important;
-         text-align: center;
-         font-size: 18px !important;
-         line-height: 42px;
-         opacity: 1;
-         -webkit-transition: all .1s linear .2s;
-         -o-transition: all .1s linear .2s;
-         transition: all .1s linear .2s;
-         -webkit-transform: translateX(-62px);
-         -ms-transform: translateX(-62px);
-         transform: translateX(-62px)
-      }
-
-      @media(max-width: 991.98px) {
-         #template-customizer .template-customizer-open-btn {
-            top: 145px
-         }
-      }
-
-      .dark-style #template-customizer .template-customizer-open-btn {
-         background: var(--bs-primary)
-      }
-
-      #template-customizer .template-customizer-open-btn::before {
-         content: "";
-         width: 22px;
-         height: 22px;
-         display: block;
-         background-size: 100% 100%;
-         position: absolute;
-         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABClJREFUaEPtmY1RFEEQhbsjUCIQIhAiUCNQIxAiECIQIxAiECIAIpAMhAiECIQI2vquZqnZvp6fhb3SK5mqq6Ju92b69bzXf6is+dI1t1+eAfztG5z1BsxsU0S+ici2iPB3vm5E5EpEDlSVv2dZswFIxv8UkZcNy+5EZGcuEHMCOBeR951uvVDVD53vVl+bE8DvDu8Pxtyo6ta/BsByg1R15Bwzqz5/LJgn34CZwfnPInI4BUB6/1hV0cSjVxcAM4PbcBZjL0XklIPN7Is3fLCkdQPpPYw/VNXj5IhPIvJWRIhSl6p60ULWBGBm30Vk123EwRxCuIzWkkjNrCZywith10ewE1Xdq4GoAjCz/RTXW44Ynt+LyBEfT43kYfbj86J3w5Q32DNcRQDpwF+dkQXDMey8xem0L3TEqB4g3PZWad8agBMRgZPeu96D1/C2Zbh3X0p80Op1xxloztN48bMQQNoc7+eLEuAoPSPiIDY4Ooo+E6ixeNXM+D3GERz2U3CIqMstLJUgJQDe+7eq6mub0NYEkLAKwEHkiBQDCZtddZCZ8d6r7JDwFkoARklHRPZUFVDVZWbwGuNrC4EfdOzFrRABh3Wnqhv+d70AEBLGFROPmeHlnM81G69UdSd6IUuM0GgUVn1uqWmg5EmMfBeEyB7Pe3txBkY+rGT8j0J+WXq/BgDkUCaqLgEAnwcRog0veMIqFAAwCy2wnw+bI2GaGboBgF9k5N0o0rUSGUb4eO0BeO9j/GYhkSHMHMTIqwGARX6p6a+nlPBl8kZuXMD9j6pKfF9aZuaFOdJCEL5D4eYb9wCYVCanrBmGyii/tIq+SLj/HQBCaM5bLzwfPqdQ6FpVHyra4IbuVbXaY7dETC2ESPNNWiIOi69CcdgSMXsh4tNSUiklMgwmC0aNd08Y5WAES6HHehM4gu97wyhBgWpgqXsrASglprDy7CwhehMZOSbK6JMSma+Fio1KltCmlBIj7gfZOGx8ppQSXrhzFnOhJ/31BDkjFHRvOd09x0mRBA9SFgxUgHpQg0q0t5ymPMlL+EnldFTfDA0NAmf+OTQ0X0sRouf7NNkYGhrOYNrxtIaGg83MNzVDSe3LXLhP7O/yrCsCz1zlWTpjWkuZAOBpX3yVnLqI1yLCOKU6qMrmP7SSrUEw54XF4WBIK5FxCMOr3lVsfGqNSmPzBXUnJTIX1jyVBq9wO6UObOpgC5GjO98vFKnTdQMZXxEsWZlDiCZMIxAbNxQOqlpVZtobejBaZNoBnRDzMFpkxvTQOD36BlrcySZuI6p1ACB6LU3wWuf5581+oHfD1vi89bz3nFUC8Nm7ZlP3nKkFbM4bWPt/MSFwklprYItwt6cmvpWJ2IVcQBCz6bLysSCv3SaANCiTsnaNRrNRqMXVVT1/BrAqz/buu/Y38Ad3KC5PARej0QAAAABJRU5ErkJggg==);
-         margin: 10px
-      }
-
-      .customizer-hide #template-customizer .template-customizer-open-btn {
-         display: none
-      }
-
-      [dir=rtl] #template-customizer .template-customizer-open-btn {
-         border-radius: 0;
-         border-top-right-radius: 15%;
-         border-bottom-right-radius: 15%
-      }
-
-      [dir=rtl] #template-customizer .template-customizer-open-btn::before {
-         margin-left: -2px
-      }
-
-      #template-customizer.template-customizer-open .template-customizer-open-btn {
-         opacity: 0;
-         -webkit-transition-delay: 0s;
-         -o-transition-delay: 0s;
-         transition-delay: 0s;
-         -webkit-transform: none !important;
-         -ms-transform: none !important;
-         transform: none !important
-      }
-
-      #template-customizer .template-customizer-inner {
-         position: relative;
-         overflow: auto;
-         -webkit-box-flex: 0;
-         -ms-flex: 0 1 auto;
-         flex: 0 1 auto;
-         opacity: 1;
-         -webkit-transition: opacity .2s;
-         -o-transition: opacity .2s;
-         transition: opacity .2s
-      }
-
-      #template-customizer .template-customizer-inner>div:first-child>hr:first-of-type {
-         display: none !important
-      }
-
-      #template-customizer .template-customizer-inner>div:first-child>h5:first-of-type {
-         padding-top: 0 !important
-      }
-
-      #template-customizer .template-customizer-themes-inner {
-         position: relative;
-         opacity: 1;
-         -webkit-transition: opacity .2s;
-         -o-transition: opacity .2s;
-         transition: opacity .2s
-      }
-
-      #template-customizer .template-customizer-theme-item {
-         display: -webkit-box;
-         display: -ms-flexbox;
-         display: flex;
-         -webkit-box-align: center;
-         align-items: center;
-         -ms-flex-align: center;
-         -webkit-box-flex: 1;
-         -ms-flex: 1 1 100%;
-         flex: 1 1 100%;
-         -webkit-box-pack: justify;
-         -ms-flex-pack: justify;
-         justify-content: space-between;
-         margin-bottom: 10px;
-         padding: 0 24px;
-         width: 100%;
-         cursor: pointer
-      }
-
-      #template-customizer .template-customizer-theme-item input {
-         position: absolute;
-         z-index: -1;
-         opacity: 0
-      }
-
-      #template-customizer .template-customizer-theme-item input~span {
-         opacity: .25;
-         -webkit-transition: all .2s;
-         -o-transition: all .2s;
-         transition: all .2s
-      }
-
-      #template-customizer .template-customizer-theme-item .template-customizer-theme-checkmark {
-         display: inline-block;
-         width: 6px;
-         height: 12px;
-         border-right: 1px solid;
-         border-bottom: 1px solid;
-         opacity: 0;
-         -webkit-transition: all .2s;
-         -o-transition: all .2s;
-         transition: all .2s;
-         -webkit-transform: rotate(45deg);
-         -ms-transform: rotate(45deg);
-         transform: rotate(45deg)
-      }
-
-      [dir=rtl] #template-customizer .template-customizer-theme-item .template-customizer-theme-checkmark {
-         border-right: none;
-         border-left: 1px solid;
-         -webkit-transform: rotate(-45deg);
-         -ms-transform: rotate(-45deg);
-         transform: rotate(-45deg)
-      }
-
-      #template-customizer .template-customizer-theme-item input:checked:not([disabled])~span,
-      #template-customizer .template-customizer-theme-item:hover input:not([disabled])~span {
-         opacity: 1
-      }
-
-      #template-customizer .template-customizer-theme-item input:checked:not([disabled])~span .template-customizer-theme-checkmark {
-         opacity: 1
-      }
-
-      #template-customizer .template-customizer-theme-colors span {
-         display: block;
-         margin: 0 1px;
-         width: 10px;
-         height: 10px;
-         border-radius: 50%;
-         -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, .1) inset;
-         box-shadow: 0 0 0 1px rgba(0, 0, 0, .1) inset
-      }
-
-      #template-customizer.template-customizer-loading .template-customizer-inner,
-      #template-customizer.template-customizer-loading-theme .template-customizer-themes-inner {
-         opacity: .2
-      }
-
-      #template-customizer.template-customizer-loading .template-customizer-inner::after,
-      #template-customizer.template-customizer-loading-theme .template-customizer-themes-inner::after {
-         content: "";
-         position: absolute;
-         top: 0;
-         right: 0;
-         bottom: 0;
-         left: 0;
-         z-index: 999;
-         display: block
-      }
-
-      @media(max-width: 1200px) {
-         #template-customizer {
-            display: none;
-            visibility: hidden !important
-         }
-      }
-
-      @media(max-width: 575.98px) {
-         #template-customizer {
-            width: 300px;
-            -webkit-transform: translateX(320px);
-            -ms-transform: translateX(320px);
-            transform: translateX(320px)
-         }
-      }
-
-      .layout-menu-100vh #template-customizer {
-         height: 100vh
-      }
-
-      [dir=rtl] #template-customizer {
-         right: auto;
-         left: 0;
-         -webkit-transform: translateX(-420px);
-         -ms-transform: translateX(-420px);
-         transform: translateX(-420px)
-      }
-
-      [dir=rtl] #template-customizer .template-customizer-open-btn {
-         right: 0;
-         left: auto;
-         -webkit-transform: translateX(62px);
-         -ms-transform: translateX(62px);
-         transform: translateX(62px)
-      }
-
-      [dir=rtl] #template-customizer .template-customizer-close-btn {
-         right: auto;
-         left: 0
-      }
-
-      #template-customizer .template-customizer-layouts-options[disabled] {
-         opacity: .5;
-         pointer-events: none
-      }
-
-      [dir=rtl] .template-customizer-t-style_switch_light {
-         padding-right: 0 !important
-      }
-   </style>
    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
    <script src="/assets/js/config.js"></script>
    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/core.css" class="template-customizer-core-css">
@@ -393,6 +49,174 @@
 </head>
 
 <body>
+
+   <!-- LOADING -->
+   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+   <!-- FIM LOADING -->
+
+   <!-- MODAL -->
+   <div class="modal fade" id="createApp" tabindex="-1" style="display: none; --bs-modal-margin: 2rem;" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-simple modal-refer-and-earn" style="--bs-modal-width: 75rem;">
+        <div class="modal-content p-3 p-md-5">
+          <div class="modal-body">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="text-center mb-4">
+              <h4 class="mb-2" id="modal-nomovtra"></h4>
+              <h3 class="mb-2" id="modal-cliente">-------------------</h3>
+            </div>
+            <div class="row">
+
+              <div class="col-12 col-lg-3 px-3">
+                <div class="d-flex justify-content-center mb-3">
+                  <div class="modal-refer-and-earn-step bg-label-primary" style="background-color: #ffcc005b !important;">
+                     <i class="menu-icon tf-icons ti ti-shopping-bag" style="margin-left: 8px;"></i>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h5>Coleta</h5>
+                  <p class="mb-lg-0" id="modal-coleta">------------</p>
+                  <p class="mb-lg-0" id="modal-end-coleta" style="font-size: 0.8rem;">------------</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-3 px-3">
+                <div class="d-flex justify-content-center mb-3">
+                  <div class="modal-refer-and-earn-step bg-label-primary" style="background-color: #ffcc005b !important;">
+                     <i class="menu-icon tf-icons ti ti-map-pin-up" style="margin-left: 8px;"></i>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h5>Entrega</h5>
+                  <p class="mb-lg-0" id="modal-entrega">------------</p>
+                  <p class="mb-lg-0" id="modal-end-entrega" style="font-size: 0.8rem;">------------</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-3 px-3">
+                <div class="d-flex justify-content-center mb-3">
+                  <div class="modal-refer-and-earn-step bg-label-primary" style="background-color: #ffcc005b !important;">
+                     <i class="menu-icon tf-icons ti ti-cube-send" style="margin-left: 8px;"></i>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h5>Remetente</h5>
+                  <p class="mb-0" id="modal-remetente">------------</p>
+                  <p class="mb-0" id="modal-end-remetente" style="font-size: 0.8rem;">------------</p>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-3 px-3">
+                <div class="d-flex justify-content-center mb-3">
+                  <div class="modal-refer-and-earn-step bg-label-primary" style="background-color: #ffcc005b !important;">
+                     <i class="menu-icon tf-icons ti ti-map-pin-down" style="margin-left: 8px;"></i>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h5>Destinatário</h5>
+                  <p class="mb-0" id="modal-destinatario">------------</p>
+                  <p class="mb-0" id="modal-end-destinatario" style="font-size: 0.8rem;">------------</p>
+                </div>
+              </div>
+            </div>
+            
+            <hr class="my-4">
+
+            <div class="accordion p-2" id="fleet" data-bs-toggle="sidebar" data-overlay="" data-target="#app-logistics-fleet-sidebar">
+          
+               <div class="accordion-item border-0 mb-0" id="fl-1">
+                 <div class="accordion-header" id="fleetOne">
+                   <div role="button" class="accordion-button shadow-none align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#fleet1" aria-expanded="false" aria-controls="fleet1">
+                     <div class="d-flex align-items-center">
+                       <div class="avatar-wrapper">
+                         <div class="avatar me-2">
+                           <span class="avatar-initial rounded-circle" style="background-color: #ffcc005b;"><i class="ti ti-truck text-body ti-sm" style="color: #2F74B5 !important;"></i></span>
+                         </div>
+                       </div>
+                       <span class="d-flex flex-column">
+                         <span class="h6 mb-0">Follow-ups</span>
+                         <span class="text-muted">Veja todos os follows enviados neste pedido!</span>
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+                 <div id="fleet1" class="accordion-collapse collapse" data-bs-parent="#fleet">
+                   <div class="accordion-body pt-3 pb-0">
+                     <ul class="timeline ps-3 mb-0" id="modal-follow">
+                        <!-- <li class="timeline-item ms-1 ps-4 border-left-dashed">
+                           <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
+                              <i class="ti ti-circle-check" style="background: none !important;"></i>
+                           </span>
+                           <div class="timeline-event ps-0 pb-0">
+                              <div class="timeline-header">
+                              <small class="text-primary text-uppercase fw-medium">tracking number created</small>
+                              </div>
+                              <h6 class="mb-1">Veronica Herman</h6>
+                              <p class="text-muted mb-0">Sep 01, 7:53 AM</p>
+                           </div>
+                        </li>
+                        <li class="timeline-item ms-1 ps-4 border-left-dashed">
+                           <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
+                              <i class="ti ti-circle-check" style="background: none !important;"></i>
+                           </span>
+                           <div class="timeline-event ps-0 pb-0">
+                              <div class="timeline-header">
+                              <small class="text-primary text-uppercase fw-medium">out for delivery</small>
+                              </div>
+                              <h6 class="mb-1">Veronica Herman</h6>
+                              <p class="text-muted mb-0">Sep 03, 8:02 AM</p>
+                           </div>
+                        </li>
+                        <li class="timeline-item ms-1 ps-4 border-left-dashed">
+                           <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
+                              <i class="ti ti-circle-check" style="background: none !important;"></i>
+                           </span>
+                           <div class="timeline-event ps-0 pb-0">
+                              <div class="timeline-header">
+                              <small class="text-primary text-uppercase fw-medium">out for delivery</small>
+                              </div>
+                              <h6 class="mb-1">Veronica Herman</h6>
+                              <p class="text-muted mb-0">Sep 03, 8:02 AM</p>
+                           </div>
+                        </li> -->
+                     </ul>
+                   </div>
+                 </div>
+               </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row gap-4 gap-sm-0" style="margin-top: 35px !important;">
+               <div class="col-12 col-sm-4" style="display: flex; flex-direction: column; align-items: center;">
+                  <div class="d-flex gap-2 align-items-center">
+                  <div class="badge rounded bg-label-success p-1"><i class="ti ti-currency-dollar ti-sm"></i></div>
+                  <h6 class="mb-0">Receita</h6>
+                  </div>
+                  <h4 class="my-2 pt-1" id="modal-receita">$545.69</h4>
+               </div>
+
+               <div class="col-12 col-sm-4" style=" display: flex; flex-direction: column; align-items: center;">
+                  <div class="d-flex gap-2 align-items-center">
+                  <div class="badge rounded bg-label-danger p-1"><i class="ti ti-currency-dollar ti-sm"></i></div>
+                  <h6 class="mb-0">Despesas</h6>
+                  </div>
+                  <h4 class="my-2 pt-1" id="modal-despesa">$256.34</h4>
+               </div>
+
+               <div class="col-12 col-sm-4" style=" display: flex; flex-direction: column; align-items: center;">
+                  <div class="d-flex gap-2 align-items-center">
+                  <div class="badge rounded bg-label-primary p-1"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
+                  <h6 class="mb-0">Lucro</h6>
+                  </div>
+                  <h4 class="my-2 pt-1" id="modal-lucro">$74.19</h4>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
+   <!-- FIM MODAL -->
+
    <!-- Layout wrapper -->
    <div class="layout-wrapper layout-content-navbar  ">
       <div class="layout-container">
@@ -419,7 +243,7 @@
                <!-- Dashboard menu start -->
                <li class="menu-item" module="pedidos">
                   <a href="pedidos" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-messages"></i>
+                    <i class="menu-icon tf-icons ti ti-list-details"></i>
                     <div data-i18n="Pedidos">Pedidos</div>
                   </a>
                </li>
@@ -438,7 +262,7 @@
          <div class="layout-page">
 
             <!-- Navbar -->
-            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar" style="width: 6.5%;">
+            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar" >
                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
                   <a class="nav-item nav-link px-0 me-xl-4">
                      <i class="ti ti-menu-2 ti-sm"></i>
@@ -446,10 +270,19 @@
                </div>
 
                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                  <div class="navbar-nav align-items-center">
+                     <div class="nav-item navbar-search-wrapper mb-0">
+                       <div class="nav-item nav-link search-toggler d-flex align-items-center px-0" >
+                         <i class="ti ti-search ti-md me-2"></i>
+                         <input type="text" class="form-control search-input container-xxl border-0 tt-input" id="inputPesquisar" placeholder="Pesquisar por Container, Pedido ou Cliente" aria-label="Pesquisar por Container, pedido ou cliente" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; width: 30vw; min-width: 275px;">
+                       </div>
+                     </div>
+                   </div>
+
                   <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                      <!-- User -->
-                     <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                     <li class="nav-item navbar-dropdown dropdown-user dropdown" >
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                            <div class="avatar avatar-online">
                               <img src="/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
@@ -496,287 +329,163 @@
 
             <!-- Content wrapper -->
             <div class="content-wrapper">
-
                <!-- Content -->
-
                <div class="container-xxl flex-grow-1 container-p-y" style="padding-left: 0; padding-right: 0;" module="pedidos">
 
-
                   <div class="app-kanban">
-
                      <!-- Kanban Wrapper -->
                      <div class="kanban-wrapper ps ps--active-x">
                         <div class="kanban-container" style="width: 1400px;">
-                           <div data-id="board-in-progress" data-order="1" class="kanban-board"
-                              style="width: 250px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header">
-                                 <div class="kanban-title-board" contenteditable="false">Concluidos</div>
+
+                           <!-- CONCLUIDOS -->
+                           <div  data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
+                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
+                                 <div class="kanban-title-board">Concluidos</div>
+                                 <div id="concluido" style="display: flex; flex-direction: column-reverse;">
+                                 <!-- <main class="kanban-drag">
+                                       <div class="kanban-item" style="min-height: 150px;max-height: 150px; cursor: pointer;">
+                                          <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
+                                             <div class="item-badges">
+                                                <div class="badge rounded-pill bg-label-success">Pedido 800</div>
+                                             </div>
+                                             
+                                          </div>
+                                          <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
+                                          <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
+                                          <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
+                                             <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
+                                          </div>
+                                       </div>
+                                    </main> -->
+                                 </div>
                               </header>
-                              <main class="kanban-drag">
-                                 <div class="kanban-item" data-eid="in-progress-1" data-comments="12"
-                                    data-badge-text="UX" data-badge="success" data-due-date="5 April"
-                                    data-attachments="4" data-assigned="12.png,5.png" data-members="Bruce,Clark">
-                                    <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                       <div class="item-badges">
-                                          <div class="badge rounded-pill bg-label-success"> UX</div>
-                                       </div>
-                                       <div class="dropdown kanban-tasks-item-dropdown"><i
-                                             class="dropdown-toggle ti ti-dots-vertical" id="kanban-tasks-item-dropdown"
-                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                          <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="kanban-tasks-item-dropdown"><a class="dropdown-item"
-                                             >Copy task link</a><a class="dropdown-item"
-                                             >Duplicate task</a><a
-                                                class="dropdown-item delete-task">Delete</a>
-                                          </div>
-                                       </div>
-                                    </div><span class="kanban-text">Research FAQ page UX</span>
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-2 pt-1">
-                                       <div class="d-flex"> <span class="d-flex align-items-center me-2"><i
-                                                class="ti ti-paperclip ti-xs me-1"></i><span
-                                                class="attachments">4</span></span> <span
-                                             class="d-flex align-items-center ms-1"><i
-                                                class="ti ti-message-dots ti-xs me-1"></i><span> 12 </span></span></div>
-                                       <div class="avatar-group d-flex align-items-center assigned-avatar">
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Bruce" data-bs-original-title="Bruce"><img
-                                                src="/assets/img/avatars/12.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Clark" data-bs-original-title="Clark"><img
-                                                src="/assets/img/avatars/5.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="kanban-item" data-eid="in-progress-2" data-comments="8"
-                                    data-badge-text="Code Review" data-badge="danger" data-attachments="2"
-                                    data-due-date="10 April" data-assigned="3.png,8.png" data-members="Helena,Iris">
-                                    <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                       <div class="item-badges">
-                                          <div class="badge rounded-pill bg-label-danger"> Code Review</div>
-                                       </div>
-                                       <div class="dropdown kanban-tasks-item-dropdown"><i
-                                             class="dropdown-toggle ti ti-dots-vertical" id="kanban-tasks-item-dropdown"
-                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                          <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="kanban-tasks-item-dropdown"><a class="dropdown-item"
-                                             >Copy task link</a><a class="dropdown-item"
-                                             >Duplicate task</a><a
-                                                class="dropdown-item delete-task">Delete</a>
-                                          </div>
-                                       </div>
-                                    </div><span class="kanban-text">Review Javascript code</span>
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-2 pt-1">
-                                       <div class="d-flex"> <span class="d-flex align-items-center me-2"><i
-                                                class="ti ti-paperclip ti-xs me-1"></i><span
-                                                class="attachments">2</span></span> <span
-                                             class="d-flex align-items-center ms-1"><i
-                                                class="ti ti-message-dots ti-xs me-1"></i><span> 8 </span></span></div>
-                                       <div class="avatar-group d-flex align-items-center assigned-avatar">
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Helena" data-bs-original-title="Helena"><img
-                                                src="/assets/img/avatars/3.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Iris" data-bs-original-title="Iris"><img
-                                                src="/assets/img/avatars/8.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </main>
-                              <footer></footer>
                            </div>
-                           <div data-id="board-in-review" data-order="2" class="kanban-board"
-                              style="width: 250px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header">
+                           <!-- FIM CONCLUIDOS -->
+
+                           <!-- DOCUMENTOS ENTREGUES -->
+                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
+                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
                                  <div class="kanban-title-board" contenteditable="false">Documentos Entregues</div>
+                                 <div id="doc_entregues" style="display: flex; flex-direction: column-reverse;">
+                                    <!-- <main class="kanban-drag">
+                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
+                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
+                                                <div class="item-badges">
+                                                   <div class="badge rounded-pill bg-label-warning">Pedido 800</div>
+                                                </div>
+                                                
+                                             </div>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
+                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
+                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
+                                             </div>
+                                          </div>
+                                       </main> -->
+                                 </div>
                               </header>
-                              <main class="kanban-drag">
-                                 <div class="kanban-item" data-eid="in-review-1" data-comments="17"
-                                    data-badge-text="Info" data-badge="info" data-due-date="8 April"
-                                    data-attachments="8" data-assigned="11.png,6.png" data-members="Laurel,Harley">
-                                    <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                       <div class="item-badges">
-                                          <div class="badge rounded-pill bg-label-info"> Info</div>
-                                       </div>
-                                       <div class="dropdown kanban-tasks-item-dropdown"><i
-                                             class="dropdown-toggle ti ti-dots-vertical" id="kanban-tasks-item-dropdown"
-                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                          <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="kanban-tasks-item-dropdown"><a class="dropdown-item"
-                                             >Copy task link</a><a class="dropdown-item"
-                                             >Duplicate task</a><a
-                                                class="dropdown-item delete-task">Delete</a>
-                                          </div>
-                                       </div>
-                                    </div><span class="kanban-text">Review completed Apps</span>
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-2 pt-1">
-                                       <div class="d-flex"> <span class="d-flex align-items-center me-2"><i
-                                                class="ti ti-paperclip ti-xs me-1"></i><span
-                                                class="attachments">8</span></span> <span
-                                             class="d-flex align-items-center ms-1"><i
-                                                class="ti ti-message-dots ti-xs me-1"></i><span> 17 </span></span></div>
-                                       <div class="avatar-group d-flex align-items-center assigned-avatar">
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Laurel" data-bs-original-title="Laurel"><img
-                                                src="/assets/img/avatars/11.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Harley" data-bs-original-title="Harley"><img
-                                                src="/assets/img/avatars/6.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="kanban-item" data-eid="in-review-2" data-comments="18"
-                                    data-badge-text="Images" data-image="16.jpg" data-badge="warning"
-                                    data-due-date="2 April" data-attachments="10"
-                                    data-assigned="9.png,2.png,3.png,12.png" data-members="Dianna,Jordan,Vinnie,Lasa">
-                                    <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                       <div class="item-badges">
-                                          <div class="badge rounded-pill bg-label-warning"> Images</div>
-                                       </div>
-                                       <div class="dropdown kanban-tasks-item-dropdown"><i
-                                             class="dropdown-toggle ti ti-dots-vertical" id="kanban-tasks-item-dropdown"
-                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                          <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="kanban-tasks-item-dropdown"><a class="dropdown-item"
-                                             >Copy task link</a><a class="dropdown-item"
-                                             >Duplicate task</a><a
-                                                class="dropdown-item delete-task">Delete</a>
-                                          </div>
-                                       </div>
-                                    </div><span class="kanban-text">Find new images
-                                       for pages</span>
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-2 pt-1">
-                                       <div class="d-flex"> <span class="d-flex align-items-center me-2"><i
-                                                class="ti ti-paperclip ti-xs me-1"></i><span
-                                                class="attachments">10</span></span> <span
-                                             class="d-flex align-items-center ms-1"><i
-                                                class="ti ti-message-dots ti-xs me-1"></i><span> 18 </span></span></div>
-                                       <div class="avatar-group d-flex align-items-center assigned-avatar">
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Dianna" data-bs-original-title="Dianna"><img
-                                                src="/assets/img/avatars/9.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Jordan" data-bs-original-title="Jordan"><img
-                                                src="/assets/img/avatars/2.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Vinnie" data-bs-original-title="Vinnie"><img
-                                                src="/assets/img/avatars/3.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Lasa" data-bs-original-title="Lasa"><img
-                                                src="/assets/img/avatars/12.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </main>
-                              <footer></footer>
                            </div>
-                           <div data-id="board-done" data-order="3" class="kanban-board"
-                              style="width: 250px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header">
+                           <!-- FIM DOCUMENTOS ENTREGUES -->
+
+                           <!-- DEVOLUÇÃO DE VAZIO -->
+                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
+                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
                                  <div class="kanban-title-board" contenteditable="false">Devolução de Vazio</div>
+                                 <div id="devolucao_vazio" style="display: flex; flex-direction: column-reverse;">
+                                    <!-- <main class="kanban-drag">
+                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
+                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
+                                                <div class="item-badges">
+                                                   <div class="badge rounded-pill bg-label-secondary">Pedido 800</div>
+                                                </div>
+                                                
+                                             </div>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
+                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
+                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
+                                             </div>
+                                          </div>
+                                       </main> -->
+                                 </div>
                               </header>
-                              <main class="kanban-drag">
-                                 <div class="kanban-item is-moving" data-eid="done-1" data-comments="4"
-                                    data-badge-text="App" data-badge="secondary" data-due-date="7 April"
-                                    data-attachments="1" data-assigned="2.png,9.png,10.png"
-                                    data-members="Kara,Nyssa,Darcey">
-                                    <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                       <div class="item-badges">
-                                          <div class="badge rounded-pill bg-label-secondary"> App</div>
-                                       </div>
-                                       <div class="dropdown kanban-tasks-item-dropdown"><i
-                                             class="dropdown-toggle ti ti-dots-vertical" id="kanban-tasks-item-dropdown"
-                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                          <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="kanban-tasks-item-dropdown"><a class="dropdown-item"
-                                             >Copy task link</a><a class="dropdown-item"
-                                             >Duplicate task</a><a
-                                                class="dropdown-item delete-task">Delete</a>
-                                          </div>
-                                       </div>
-                                    </div><span class="kanban-text">Forms &amp; Tables section</span>
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-2 pt-1">
-                                       <div class="d-flex"> <span class="d-flex align-items-center me-2"><i
-                                                class="ti ti-paperclip ti-xs me-1"></i><span
-                                                class="attachments">1</span></span> <span
-                                             class="d-flex align-items-center ms-1"><i
-                                                class="ti ti-message-dots ti-xs me-1"></i><span> 4 </span></span></div>
-                                       <div class="avatar-group d-flex align-items-center assigned-avatar">
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Kara" data-bs-original-title="Kara"><img
-                                                src="/assets/img/avatars/2.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Nyssa" data-bs-original-title="Nyssa"><img
-                                                src="/assets/img/avatars/9.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Darcey" data-bs-original-title="Darcey"><img
-                                                src="/assets/img/avatars/10.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="kanban-item is-moving" data-eid="done-2" data-comments="21"
-                                    data-badge-text="Charts &amp; Maps" data-badge="primary" data-due-date="7 April"
-                                    data-attachments="6" data-assigned="1.png" data-members="Sarah">
-                                    <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                       <div class="item-badges">
-                                          <div class="badge rounded-pill bg-label-primary"> Charts &amp; Maps</div>
-                                       </div>
-                                       <div class="dropdown kanban-tasks-item-dropdown"><i
-                                             class="dropdown-toggle ti ti-dots-vertical" id="kanban-tasks-item-dropdown"
-                                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                          <div class="dropdown-menu dropdown-menu-end"
-                                             aria-labelledby="kanban-tasks-item-dropdown"><a class="dropdown-item"
-                                             >Copy task link</a><a class="dropdown-item"
-                                             >Duplicate task</a><a
-                                                class="dropdown-item delete-task">Delete</a>
-                                          </div>
-                                       </div>
-                                    </div><span class="kanban-text">Completed Charts &amp; Maps</span>
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap mt-2 pt-1">
-                                       <div class="d-flex"> <span class="d-flex align-items-center me-2"><i
-                                                class="ti ti-paperclip ti-xs me-1"></i><span
-                                                class="attachments">6</span></span> <span
-                                             class="d-flex align-items-center ms-1"><i
-                                                class="ti ti-message-dots ti-xs me-1"></i><span> 21 </span></span></div>
-                                       <div class="avatar-group d-flex align-items-center assigned-avatar">
-                                          <div class="avatar avatar-xs" data-bs-toggle="tooltip" data-bs-placement="top"
-                                             aria-label="Sarah" data-bs-original-title="Sarah"><img
-                                                src="/assets/img/avatars/1.png" alt="Avatar"
-                                                class="rounded-circle  pull-up"></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </main>
-                              <footer></footer>
                            </div>
-                           <div data-id="cntr-vazio-agendado" data-order="5" class="kanban-board"
-                              style="width: 250px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header">
+                           <!-- FIM DEVOLUÇÃO DE VAZIO -->
+
+                           <!-- CNTR VAZIO AGENDADO -->
+                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
+                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
                                  <div class="kanban-title-board" contenteditable="false">CNTR Vazio Agendado</div>
+                                 <div id="cntr_agendado" style="display: flex; flex-direction: column-reverse;">
+                                    <!-- <main class="kanban-drag">
+                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
+                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
+                                                <div class="item-badges">
+                                                   <div class="badge rounded-pill bg-label-info">Pedido 800</div>
+                                                </div>
+                                                
+                                             </div>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
+                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
+                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
+                                             </div>
+                                          </div>
+                                       </main> -->
+                                 </div>
                               </header>
-                              <main class="kanban-drag"></main>
-                              <footer></footer>
                            </div>
-                           <div data-id="cancelados" data-order="6" class="kanban-board"
-                              style="width: 250px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header">
-                                 <div class="kanban-title-board" contenteditable="false">Cancelados</div>
+                           <!-- FIM CNTR VAZIO AGENDADO -->
+
+                           <!-- SEM STATUS -->
+                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
+                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
+                                 <div class="kanban-title-board" contenteditable="false">Sem Status</div>
+                                 <div id="sem_status" style="display: flex; flex-direction: column-reverse;">
+                                    <!-- <main class="kanban-drag">
+                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
+                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
+                                                <div class="item-badges">
+                                                   <div class="badge rounded-pill bg-label-gray">Pedido 800</div>
+                                                </div>
+                                                
+                                             </div>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
+                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
+                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
+                                             </div>
+                                          </div>
+                                       </main> -->
+                                 </div>
                               </header>
-                              <main class="kanban-drag"></main>
-                              <footer></footer>
                            </div>
+                           <!-- FIM SEM STATUS -->
+
+                           <!-- CANCELADO -->
+                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
+                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
+                                 <div class="kanban-title-board" contenteditable="false">CANCELADO</div>
+                                 <div id="cancelado" style="display: flex; flex-direction: column-reverse;">
+                                    <!-- <main class="kanban-drag">
+                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
+                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
+                                                <div class="item-badges">
+                                                   <div class="badge rounded-pill bg-label-danger">Pedido 800</div>
+                                                </div>
+                                                
+                                             </div>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
+                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
+                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
+                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
+                                             </div>
+                                          </div>
+                                       </main> -->
+                                 </div>
+                              </header>
+                           </div>
+                           <!-- FIM CANCELADO -->
                         </div>
                      </div>
                   </div>
@@ -800,8 +509,6 @@
                </footer>
                <!-- / Footer -->
 
-
-               <div class="content-backdrop fade"></div>
             </div>
             <!-- Content wrapper -->
          </div>
@@ -814,20 +521,19 @@
       <div class="layout-overlay layout-menu-toggle"></div>
    </div>
    <!-- / Layout wrapper -->
-
-   <script src="/assets/vendor/libs/popper/popper.js"></script>
-   <script src="/assets/vendor/js/bootstrap.js"></script>
-   <script src="/assets/vendor/js/menu.js"></script>
-
-   <!-- endbuild -->
-
-   <!-- Vendors JS -->
-   <script src="/assets/vendor/libs/moment/moment.js"></script>
-
-   <!-- Main JS -->
-   <script src="/assets/js/main.js"></script>
    
+   <script src="/assets/vendor/js/menu.js"></script>
+   <script src="/assets/js/main.js"></script>
+   <script src="/assets/vendor/js/bootstrap.js"></script>
+
+   <!-- Datatables JS -->
+   <script type="text/javascript" charset="utf8" src="/assets/vendor/libs/datatables-novo/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript" charset="utf8" src="/assets/vendor/libs/datatables-novo/jquery.dataTables.js"></script>
+
+   <!-- Arquivos Criados -->
    <script src="/assets/js/1-main.js"></script>
+   <script type="module" src="/assets/js/1-pedidos.js"></script>
+   <script src="/assets/js/modal-create-app.js"></script>
 </body>
 
 </html>
