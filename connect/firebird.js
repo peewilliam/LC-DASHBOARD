@@ -37,7 +37,7 @@ const executeQuery = async (query) => {
     });
     return results;
   } catch (error) {
-    console.log(`Error connecting to database: ${error}.`);
+    console.log(`Erro ao se conectar no banco: ${error}.`);
     return error;
   }
 };
