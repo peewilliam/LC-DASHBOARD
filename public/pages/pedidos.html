@@ -6,8 +6,7 @@
 
    <title>Pedidos - LC Transportes</title>
 
-   <meta name="description" content="Start your development with a Dashboard for Bootstrap 5">
-   <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+   <meta name="description" content="Dashboard desenvolvido por i9devgroup para analise de processos, faturamento, controle de frota, entre outras analises.">
 
    <!-- Favicon -->
    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/icon.svg">
@@ -100,8 +99,8 @@
                 </div>
                 <div class="text-center">
                   <h5>Remetente</h5>
-                  <p class="mb-0" id="modal-remetente">------------</p>
-                  <p class="mb-0" id="modal-end-remetente" style="font-size: 0.8rem;">------------</p>
+                  <p class="mb-lg-0" id="modal-remetente">------------</p>
+                  <p class="mb-lg-0" id="modal-end-remetente" style="font-size: 0.8rem;">------------</p>
                 </div>
               </div>
 
@@ -113,15 +112,15 @@
                 </div>
                 <div class="text-center">
                   <h5>Destinatário</h5>
-                  <p class="mb-0" id="modal-destinatario">------------</p>
-                  <p class="mb-0" id="modal-end-destinatario" style="font-size: 0.8rem;">------------</p>
+                  <p class="mb-lg-0" id="modal-destinatario">------------</p>
+                  <p class="mb-lg-0" id="modal-end-destinatario" style="font-size: 0.8rem;">------------</p>
                 </div>
               </div>
             </div>
             
             <hr class="my-4">
 
-            <div class="accordion p-2" id="fleet" data-bs-toggle="sidebar" data-overlay="" data-target="#app-logistics-fleet-sidebar">
+            <div class="accordion p-0" id="fleet" data-bs-toggle="sidebar" data-target="#app-logistics-fleet-sidebar">
           
                <div class="accordion-item border-0 mb-0" id="fl-1">
                  <div class="accordion-header" id="fleetOne">
@@ -133,54 +132,44 @@
                          </div>
                        </div>
                        <span class="d-flex flex-column">
-                         <span class="h6 mb-0">Follow-ups</span>
-                         <span class="text-muted">Veja todos os follows enviados neste pedido!</span>
+                         <span class="h6 mb-0">Detalhes do pedido</span>
+                         <span class="text-muted">Cavalo, carreta, motorista, proprietário e contrato de frete!</span>
                        </span>
                      </div>
                    </div>
                  </div>
                  <div id="fleet1" class="accordion-collapse collapse" data-bs-parent="#fleet">
                    <div class="accordion-body pt-3 pb-0">
-                     <ul class="timeline ps-3 mb-0" id="modal-follow">
-                        <!-- <li class="timeline-item ms-1 ps-4 border-left-dashed">
-                           <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                              <i class="ti ti-circle-check" style="background: none !important;"></i>
-                           </span>
-                           <div class="timeline-event ps-0 pb-0">
-                              <div class="timeline-header">
-                              <small class="text-primary text-uppercase fw-medium">tracking number created</small>
-                              </div>
-                              <h6 class="mb-1">Veronica Herman</h6>
-                              <p class="text-muted mb-0">Sep 01, 7:53 AM</p>
-                           </div>
-                        </li>
-                        <li class="timeline-item ms-1 ps-4 border-left-dashed">
-                           <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                              <i class="ti ti-circle-check" style="background: none !important;"></i>
-                           </span>
-                           <div class="timeline-event ps-0 pb-0">
-                              <div class="timeline-header">
-                              <small class="text-primary text-uppercase fw-medium">out for delivery</small>
-                              </div>
-                              <h6 class="mb-1">Veronica Herman</h6>
-                              <p class="text-muted mb-0">Sep 03, 8:02 AM</p>
-                           </div>
-                        </li>
-                        <li class="timeline-item ms-1 ps-4 border-left-dashed">
-                           <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                              <i class="ti ti-circle-check" style="background: none !important;"></i>
-                           </span>
-                           <div class="timeline-event ps-0 pb-0">
-                              <div class="timeline-header">
-                              <small class="text-primary text-uppercase fw-medium">out for delivery</small>
-                              </div>
-                              <h6 class="mb-1">Veronica Herman</h6>
-                              <p class="text-muted mb-0">Sep 03, 8:02 AM</p>
-                           </div>
-                        </li> -->
+                     <ul class="timeline ps-0 mb-0" id="acordeao_modal_carga">
+
                      </ul>
                    </div>
                  </div>
+               </div>
+
+               <div class="accordion-item border-0 mb-0" id="fl-2">
+                  <div class="accordion-header" id="fleetTwo">
+                    <div role="button" class="accordion-button shadow-none align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#fleet2" aria-expanded="false" aria-controls="fleet2">
+                      <div class="d-flex align-items-center">
+                        <div class="avatar-wrapper">
+                          <div class="avatar me-2">
+                            <span class="avatar-initial rounded-circle" style="background-color: #ffcc005b;"><i class="ti ti-news text-body ti-sm" style="color: #2F74B5 !important;"></i></span>
+                          </div>
+                        </div>
+                        <span class="d-flex flex-column">
+                          <span class="h6 mb-0">Follow-ups</span>
+                          <span class="text-muted">Veja todos os follows enviados neste pedido!</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="fleet2" class="accordion-collapse collapse" data-bs-parent="#fleet">
+                    <div class="accordion-body pt-3 pb-0">
+                      <ul class="timeline ps-0 mb-0" id="acordeao_modal_follow">
+
+                      </ul>
+                    </div>
+                  </div>
                </div>
             </div>
 
@@ -192,7 +181,7 @@
                   <div class="badge rounded bg-label-success p-1"><i class="ti ti-currency-dollar ti-sm"></i></div>
                   <h6 class="mb-0">Receita</h6>
                   </div>
-                  <h4 class="my-2 pt-1" id="modal-receita">$545.69</h4>
+                  <h4 class="my-2 pt-1" id="modal-receita">R$---,--</h4>
                </div>
 
                <div class="col-12 col-sm-4" style=" display: flex; flex-direction: column; align-items: center;">
@@ -200,7 +189,7 @@
                   <div class="badge rounded bg-label-danger p-1"><i class="ti ti-currency-dollar ti-sm"></i></div>
                   <h6 class="mb-0">Despesas</h6>
                   </div>
-                  <h4 class="my-2 pt-1" id="modal-despesa">$256.34</h4>
+                  <h4 class="my-2 pt-1" id="modal-despesa">R$---,--</h4>
                </div>
 
                <div class="col-12 col-sm-4" style=" display: flex; flex-direction: column; align-items: center;">
@@ -208,7 +197,7 @@
                   <div class="badge rounded bg-label-primary p-1"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
                   <h6 class="mb-0">Lucro</h6>
                   </div>
-                  <h4 class="my-2 pt-1" id="modal-lucro">$74.19</h4>
+                  <h4 class="my-2 pt-1" id="modal-lucro">R$---,--</h4>
                </div>
             </div>
           </div>
@@ -274,7 +263,7 @@
                      <div class="nav-item navbar-search-wrapper mb-0">
                        <div class="nav-item nav-link search-toggler d-flex align-items-center px-0" >
                          <i class="ti ti-search ti-md me-2"></i>
-                         <input type="text" class="form-control search-input container-xxl border-0 tt-input" id="inputPesquisar" placeholder="Pesquisar por Container, Pedido ou Cliente" aria-label="Pesquisar por Container, pedido ou cliente" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; width: 30vw; min-width: 275px;">
+                         <input type="text" class="form-control search-input container-xxl border-0 tt-input" id="inputPesquisar" placeholder="Pesquisar" aria-label="Pesquisar" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; width: 30vw; min-width: 180px;" onkeyup="search(this)">
                        </div>
                      </div>
                    </div>
@@ -335,157 +324,10 @@
                   <div class="app-kanban">
                      <!-- Kanban Wrapper -->
                      <div class="kanban-wrapper ps ps--active-x">
-                        <div class="kanban-container" style="width: 1400px;">
-
-                           <!-- CONCLUIDOS -->
-                           <div  data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
-                                 <div class="kanban-title-board">Concluidos</div>
-                                 <div id="concluido" style="display: flex; flex-direction: column-reverse;">
-                                 <!-- <main class="kanban-drag">
-                                       <div class="kanban-item" style="min-height: 150px;max-height: 150px; cursor: pointer;">
-                                          <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                             <div class="item-badges">
-                                                <div class="badge rounded-pill bg-label-success">Pedido 800</div>
-                                             </div>
-                                             
-                                          </div>
-                                          <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
-                                          <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
-                                          <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
-                                             <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
-                                          </div>
-                                       </div>
-                                    </main> -->
-                                 </div>
-                              </header>
-                           </div>
-                           <!-- FIM CONCLUIDOS -->
-
-                           <!-- DOCUMENTOS ENTREGUES -->
-                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
-                                 <div class="kanban-title-board" contenteditable="false">Documentos Entregues</div>
-                                 <div id="doc_entregues" style="display: flex; flex-direction: column-reverse;">
-                                    <!-- <main class="kanban-drag">
-                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
-                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                                <div class="item-badges">
-                                                   <div class="badge rounded-pill bg-label-warning">Pedido 800</div>
-                                                </div>
-                                                
-                                             </div>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
-                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
-                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
-                                             </div>
-                                          </div>
-                                       </main> -->
-                                 </div>
-                              </header>
-                           </div>
-                           <!-- FIM DOCUMENTOS ENTREGUES -->
-
-                           <!-- DEVOLUÇÃO DE VAZIO -->
-                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
-                                 <div class="kanban-title-board" contenteditable="false">Devolução de Vazio</div>
-                                 <div id="devolucao_vazio" style="display: flex; flex-direction: column-reverse;">
-                                    <!-- <main class="kanban-drag">
-                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
-                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                                <div class="item-badges">
-                                                   <div class="badge rounded-pill bg-label-secondary">Pedido 800</div>
-                                                </div>
-                                                
-                                             </div>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
-                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
-                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
-                                             </div>
-                                          </div>
-                                       </main> -->
-                                 </div>
-                              </header>
-                           </div>
-                           <!-- FIM DEVOLUÇÃO DE VAZIO -->
-
-                           <!-- CNTR VAZIO AGENDADO -->
-                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
-                                 <div class="kanban-title-board" contenteditable="false">CNTR Vazio Agendado</div>
-                                 <div id="cntr_agendado" style="display: flex; flex-direction: column-reverse;">
-                                    <!-- <main class="kanban-drag">
-                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
-                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                                <div class="item-badges">
-                                                   <div class="badge rounded-pill bg-label-info">Pedido 800</div>
-                                                </div>
-                                                
-                                             </div>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
-                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
-                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
-                                             </div>
-                                          </div>
-                                       </main> -->
-                                 </div>
-                              </header>
-                           </div>
-                           <!-- FIM CNTR VAZIO AGENDADO -->
-
-                           <!-- SEM STATUS -->
-                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
-                                 <div class="kanban-title-board" contenteditable="false">Sem Status</div>
-                                 <div id="sem_status" style="display: flex; flex-direction: column-reverse;">
-                                    <!-- <main class="kanban-drag">
-                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
-                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                                <div class="item-badges">
-                                                   <div class="badge rounded-pill bg-label-gray">Pedido 800</div>
-                                                </div>
-                                                
-                                             </div>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
-                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
-                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
-                                             </div>
-                                          </div>
-                                       </main> -->
-                                 </div>
-                              </header>
-                           </div>
-                           <!-- FIM SEM STATUS -->
-
-                           <!-- CANCELADO -->
-                           <div data-id="board-in-progress" data-order="1" class="kanban-board" style="min-width: 254px; margin-left: 15px; margin-right: 15px;">
-                              <header class="kanban-board-header" style="display: flex; flex-direction: column;">
-                                 <div class="kanban-title-board" contenteditable="false">CANCELADO</div>
-                                 <div id="cancelado" style="display: flex; flex-direction: column-reverse;">
-                                    <!-- <main class="kanban-drag">
-                                          <div class="kanban-item" data-eid="in-progress-1" data-comments="12" data-badge-text="UX" style="min-height: 150px; max-height: 150px; cursor: pointer;">
-                                             <div class="d-flex justify-content-between flex-wrap align-items-center mb-2 pb-1">
-                                                <div class="item-badges">
-                                                   <div class="badge rounded-pill bg-label-danger">Pedido 800</div>
-                                                </div>
-                                                
-                                             </div>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">Nome do cliente vai estar aqui Nome do cliente vai estar aqui</span>
-                                             <span class="kanban-text" style="max-width: 100% !important;overflow-x: hidden;text-wrap: nowrap;text-overflow: ellipsis;">CNTR: AAA1234-22</span>
-                                             <div class="d-flex justify-content-end align-items-center flex-wrap mt-2 pt-1">
-                                                <span class="kanban-text" style="font-size: 12px;">10/10/2024 15:39</span>
-                                             </div>
-                                          </div>
-                                       </main> -->
-                                 </div>
-                              </header>
-                           </div>
-                           <!-- FIM CANCELADO -->
+                        <div class="kanban-container" id="corpo-pedidos" style="width: 1400px;">
+                           <!-- STATUS INSERIDO AQUI -->
+                              <!-- CARDS INSERIDO AQUI -->
+                           <!-- FIM STATUS INSERIDO AQUI -->
                         </div>
                      </div>
                   </div>
@@ -524,15 +366,12 @@
    
    <script src="/assets/vendor/js/menu.js"></script>
    <script src="/assets/js/main.js"></script>
+   <script src="/assets/vendor/libs/jquery/jquery.js"></script>
    <script src="/assets/vendor/js/bootstrap.js"></script>
-
-   <!-- Datatables JS -->
-   <script type="text/javascript" charset="utf8" src="/assets/vendor/libs/datatables-novo/jquery-3.6.0.min.js"></script>
-   <script type="text/javascript" charset="utf8" src="/assets/vendor/libs/datatables-novo/jquery.dataTables.js"></script>
 
    <!-- Arquivos Criados -->
    <script src="/assets/js/1-main.js"></script>
-   <script type="module" src="/assets/js/1-pedidos.js"></script>
+   <script src="/assets/js/1-pedidos.js"></script>
    <script src="/assets/js/modal-create-app.js"></script>
 </body>
 

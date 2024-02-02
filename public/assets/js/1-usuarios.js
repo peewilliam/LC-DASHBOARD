@@ -12,8 +12,8 @@ async function usuarios() {
          const responseData = await response.json();
 
          // Verifica se existe o item data para inserir os dados na função
-         if (responseData.data) {
-            atualizarTabelaUsuarios(responseData.data);
+         if (responseData) {
+            atualizarTabelaUsuarios(responseData);
             
          }
 
@@ -35,7 +35,7 @@ function atualizarTabelaUsuarios(data) {
 
    data.forEach(username => {
       const duas_primeiras_letras = username.username.slice(0, 2);
-      const html_usuarios = `<tr id-user="${username.id}">
+      const html_usuarios = `<tr id-user="${username.id}" class="item-usuario">
                                  <td class="sorting_1" colspan="2">
                                     <div class="d-flex justify-content-left align-items-center">
                                        <div class="avatar-wrapper">
@@ -45,6 +45,7 @@ function atualizarTabelaUsuarios(data) {
                                        </div>
                                        <div class="d-flex flex-column">
                                           <span class="text-truncate fw-medium">${username.username}</span>
+                                          <span style="display: none;">${JSON.stringify(username)}</span>
                                        </div>
                                     </div>
                                  </td>
@@ -116,8 +117,8 @@ async function obter_dados_usuarios(id) {
    const responseData = await response.json();
 
    // Verifica se existe o item data para inserir os dados na função
-   if(responseData.data) {
-      const usuarioEncontrado = responseData.data.find(user => user.id === id);
+   if(responseData) {
+      const usuarioEncontrado = responseData.find(user => user.id === id);
 
       if (usuarioEncontrado) {
          return usuarioEncontrado;
@@ -541,25 +542,21 @@ username_input_inserir.addEventListener('input', function() {
 
 // ========== PESQUISA ========== //
 
-async function realizarPesquisa() {
-   const termoPesquisa = document.getElementById('inputPesquisar').value.toLowerCase();
+function search(e){
+   var termoPesquisa = e.value.toLowerCase(); // Obtém o valor do input em minúsculas
 
-   if (termoPesquisa.length >= 3) {
-      const response = await Thefetch(`/api/usuarios?search=${termoPesquisa}`);
-      atualizarTabelaUsuarios(response.data);
+   // Itera sobre os itens da lista e mostra/oculta com base no termo de pesquisa
+   var listaItems = document.querySelectorAll('.usuarios tr');
+   listaItems.forEach(function(item) {
+      var textoItem = item.textContent.toLowerCase();
 
-   } else if (termoPesquisa.length === 0){
-      const response = await Thefetch('/api/usuarios');
-      atualizarTabelaUsuarios(response.data);
-   }
+      // Verifica se o texto do item contém o termo de pesquisa
+      if (textoItem.includes(termoPesquisa)) {
+         item.style.display = 'table-row'; // Mostra o item
+      } else {
+         item.style.display = 'none'; // Oculta o item
+      }
+   });
 }
-
-// Adicione um event listener ao campo de pesquisa
-document.getElementById('inputPesquisar').addEventListener('keyup', function(event) {
-   const value = document.getElementById('inputPesquisar').value;
-   if (event.keyCode == 13 || value.length === 0) {
-      realizarPesquisa();
-   }
-});
 
 // ========== FIM PESQUISA ========== //

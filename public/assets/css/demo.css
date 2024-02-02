@@ -1,10 +1,17 @@
-/*
-* demo.css
-* File include item demo only specific css only
-******************************************************************************/
 
-.oculto {
-  display: none;
+/*Largura da barra de rolagem*/
+.modal::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: #F9F9F9 !important;        /* color of the tracking area */
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2 !important;    /* color of the scroll thumb */
+  border-radius: 20px !important;       /* roundness of the scroll thumb */
+  border: 3px solid #F9F9F9 !important;  /* creates padding around scroll thumb */
 }
 
 
