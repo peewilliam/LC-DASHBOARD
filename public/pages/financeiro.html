@@ -6,8 +6,7 @@
 
    <title>Financeiro - LC Transportes</title>
 
-   <meta name="description" content="Start your development with a Dashboard for Bootstrap 5">
-   <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+   <meta name="description" content="Dashboard desenvolvido por i9devgroup para analise de processos, faturamento, controle de frota, entre outras analises.">
 
    <!-- Favicon -->
    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/icon.svg">
@@ -21,6 +20,9 @@
    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css">
    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css">
    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css">
+
+   <link rel="stylesheet" href="/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+   <link rel="stylesheet" href="/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
 
    <!-- Core CSS -->
    <link rel="stylesheet" href="/assets/css/demo.css">
@@ -42,10 +44,14 @@
 </head>
 
 <body>
+   <!-- LOADING -->
+   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+   <!-- FIM LOADING -->
 
    <!-- Layout wrapper -->
-   <div class="layout-wrapper layout-content-navbar">
+   <div class="layout-wrapper layout-content-navbar  ">
       <div class="layout-container">
+
          <!-- Menu -->
          <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme"
             style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
@@ -68,13 +74,13 @@
                <!-- Dashboard menu start -->
                <li class="menu-item" module="pedidos">
                   <a href="pedidos" class="menu-link">
-                     <i class="menu-icon tf-icons ti ti-list-details"></i>
+                    <i class="menu-icon tf-icons ti ti-list-details"></i>
                     <div data-i18n="Pedidos">Pedidos</div>
                   </a>
                </li>
                <li class="menu-item" module="financeiro">
                   <a href="financeiro" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-messages"></i>
+                    <i class="menu-icon tf-icons ti ti-currency-dollar"></i>
                     <div data-i18n="Financeiro">Financeiro</div>
                   </a>
                </li>
@@ -97,8 +103,7 @@
                   <div class="navbar-nav align-items-center">
                      <div class="nav-item navbar-search-wrapper mb-0">
                        <div class="nav-item nav-link search-toggler d-flex align-items-center px-0" >
-                         <i class="ti ti-search ti-md me-2"></i>
-                         <input type="text" class="form-control search-input container-xxl border-0 tt-input" id="inputPesquisar" placeholder="Pesquisar por Container, Pedido ou Cliente" aria-label="Pesquisar por Container, pedido ou cliente" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; width: 30vw; min-width: 275px;">
+
                        </div>
                      </div>
                    </div>
@@ -106,7 +111,7 @@
                   <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                      <!-- User -->
-                     <li class="nav-item navbar-dropdown dropdown-user dropdown" style="margin-right: -54px !important;">
+                     <li class="nav-item navbar-dropdown dropdown-user dropdown" >
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                            <div class="avatar avatar-online">
                               <img src="/assets/img/avatars/1.png" alt="" class="h-auto rounded-circle">
@@ -154,178 +159,154 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                <!-- Content -->
-               <div class="container-xxl flex-grow-1 container-p-y" module="financeiro">
-                  <!-- Product List Widget -->
-                  <div class="card mb-4">
-                     <div class="card-widget-separator-wrapper">
-                        <div class="card-body card-widget-separator">
-                           <div class="row gy-4 gy-sm-1">
-                              <div class="col-sm-6 col-lg-3">
-                                 <div
-                                    class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
-                                    <div>
-                                       <h6 class="mb-2">In-store Sales</h6>
-                                       <h4 class="mb-2">$5,345.43</h4>
-                                       <p class="mb-0"><span class="text-muted me-2">5k orders</span><span
-                                             class="badge bg-label-success">+5.7%</span></p>
-                                    </div>
-                                    <span class="avatar me-sm-4">
-                                       <span class="avatar-initial bg-label-secondary rounded"><i
-                                             class="ti-md ti ti-smart-home text-body"></i></span>
-                                    </span>
+               <div class="container-xxl flex-grow-1 container-p-y">
+               
+                  <!-- Card Border Shadow -->
+                  <div class="row">
+                     <div class="col-sm-6 col-lg-3 mb-4">
+                        <div class="card card-border-shadow-success">
+                           <div class="card-body">
+                              <div class="d-flex align-items-center mb-2 pb-1">
+                                 <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-success"><i class="ti ti-currency-dollar ti-md"></i></span>
                                  </div>
-                                 <hr class="d-none d-sm-block d-lg-none me-4">
+                                 <h4 class="ms-1 mb-0" id="text-recebidos">R$ ---.---,--</h4>
                               </div>
-                              <div class="col-sm-6 col-lg-3">
-                                 <div
-                                    class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
-                                    <div>
-                                       <h6 class="mb-2">Website Sales</h6>
-                                       <h4 class="mb-2">$674,347.12</h4>
-                                       <p class="mb-0"><span class="text-muted me-2">21k orders</span><span
-                                             class="badge bg-label-success">+12.4%</span></p>
-                                    </div>
-                                    <span class="avatar p-2 me-lg-4">
-                                       <span class="avatar-initial bg-label-secondary rounded"><i
-                                             class="ti-md ti ti-device-laptop text-body"></i></span>
-                                    </span>
+                              <p class="mb-1">Recebimento</p>
+                              <p class="mb-0">
+                                 
+                                 <small class="text-muted">Valor referente aos recebimentos de pedidos</small>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-lg-3 mb-4">
+                        <div class="card card-border-shadow-danger">
+                           <div class="card-body">
+                              <div class="d-flex align-items-center mb-2 pb-1">
+                                 <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-danger"><i class="ti ti-currency-dollar ti-md"></i></span>
                                  </div>
-                                 <hr class="d-none d-sm-block d-lg-none">
+                                 <h4 class="ms-1 mb-0" id="text-pagos"> -R$ ---.---,--</h4>
                               </div>
-                              <div class="col-sm-6 col-lg-3">
-                                 <div
-                                    class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
-                                    <div>
-                                       <h6 class="mb-2">Discount</h6>
-                                       <h4 class="mb-2">$14,235.12</h4>
-                                       <p class="mb-0 text-muted">6k orders</p>
-                                    </div>
-                                    <span class="avatar p-2 me-sm-4">
-                                       <span class="avatar-initial bg-label-secondary rounded"><i
-                                             class="ti-md ti ti-gift text-body"></i></span>
-                                    </span>
+                              <p class="mb-1">Pagamento</p>
+                              <p class="mb-0">
+                                 
+                                 <small class="text-muted">Valor referente aos pagamentos de pedidos</small>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-lg-3 mb-4">
+                        <div class="card card-border-shadow-primary">
+                           <div class="card-body">
+                              <div class="d-flex align-items-center mb-2 pb-1">
+                                 <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-primary"><i class="ti ti-currency-dollar ti-md"></i></span>
                                  </div>
+                                 <h4 class="ms-1 mb-0" id="text-efetivo">R$ ---.---,--</h4>
                               </div>
-                              <div class="col-sm-6 col-lg-3">
-                                 <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                       <h6 class="mb-2">Affiliate</h6>
-                                       <h4 class="mb-2">$8,345.23</h4>
-                                       <p class="mb-0"><span class="text-muted me-2">150 orders</span><span
-                                             class="badge bg-label-danger">-3.5%</span></p>
-                                    </div>
-                                    <span class="avatar p-2">
-                                       <span class="avatar-initial bg-label-secondary rounded"><i
-                                             class="ti-md ti ti-wallet text-body"></i></span>
-                                    </span>
+                              <p class="mb-1">Lucro efetivo</p>
+                              <p class="mb-0">
+                                 <small class="text-muted">Recebimento - pagamentos de pedidos</small>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6 col-lg-3 mb-4">
+                        <div class="card card-border-shadow-info">
+                           <div class="card-body">
+                              <div class="d-flex align-items-center mb-2 pb-1">
+                                 <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-info"><i class="ti ti-currency-dollar ti-md"></i></span>
+                                 </div>
+                                 <h4 class="ms-1 mb-0" id="text-estimado">R$ ---.---,--</h4>
+                              </div>
+                              <p class="mb-1">Lucro estimado</p>
+                              <p class="mb-0">
+                                 
+                                 <small class="text-muted">Efetivo + o lucro previsto</small>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!--/ Card Border Shadow -->
+
+                  <!-- Lucro por cliente -->
+                  <div class="row">
+                     <div class="col-12 order-5 mb-4">
+                        <div class="card">
+                           <div class="card-header d-flex align-items-center justify-content-between">
+                              <div class="card-title mb-0">
+                                 <h5 class="m-0 me-2">Lucro por cliente</h5>
+                              </div>
+                           </div>
+                           <div class="card-datatable table-responsive" style="overflow: hidden;">
+                              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                 <div class="table-responsive" style="overflow: hidden;">
+                                    <table class="dt-route-vehicles table dataTable no-footer dtr-column" id="datatable_lucro_por_cliente" aria-describedby="DataTables_Table_0_info" style="width: 1395px;">
+                                       <thead class="border-top">
+                                          <tr>
+                                             <th>Cliente</th>
+                                             <th>Total Recebido</th>
+                                             <th>Total Pago</th>
+                                             <th>Lucro</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody id="lucro-clientes">
+
+                                          <!-- LUCRATIVIDADE POR CLIENTE -->
+
+                                       </tbody>
+                                    </table>
+                                    <div style="width: 1%;"></div>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
+                  <!-- / Fim Lucro por cliente -->
 
-                  <!-- Product List Table -->
-                  <div class="card">
+                  <!-- Rotas lucrativas -->
+                  <div class="row">
+                     <div class="col-12 order-5 mb-4">
+                        <div class="card">
+                           <div class="card-header d-flex align-items-center justify-content-between">
+                              <div class="card-title mb-0">
+                                 <h5 class="m-0 me-2">Lucro por rota</h5>
+                              </div>
+                           </div>
+                           <div class="card-datatable table-responsive" style="overflow: hidden;">
+                              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                 <div class="table-responsive" style="overflow: hidden;">
+                                    <table class="dt-route-vehicles table dataTable no-footer dtr-column" id="datatable_lucro_por_rota" aria-describedby="DataTables_Table_0_info" style="width: 1395px;">
+                                       <thead class="border-top">
+                                          <tr>
+                                             <th>Origem</th>
+                                             <th>Destino</th>
+                                             <th>Total Recebido</th>
+                                             <th>Total Pago</th>
+                                             <th>Lucro</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody id="lucro-rotas">
 
-                     <div class="card-datatable table-responsive">
-                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                           <!-- <div class="card-header d-flex border-top rounded-0 flex-wrap py-2">
-                              <div class="me-5 ms-n2 pe-5">
-                                 <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input
-                                          type="search" class="form-control" placeholder="Search Product"
-                                          aria-controls="DataTables_Table_0"></label></div>
-                              </div>
-                              <div class="d-flex justify-content-start justify-content-md-end align-items-baseline">
-                                 <div
-                                    class="dt-action-buttons d-flex flex-column align-items-start align-items-md-center justify-content-sm-center mb-3 mb-md-0 pt-0 gap-4 gap-sm-0 flex-sm-row">
-                                    <div class="dataTables_length mt-2 mt-sm-0 mt-md-3 me-2"
-                                       id="DataTables_Table_0_length"><label>
-                                          <select name="DataTables_Table_0_length"
-                                             aria-controls="DataTables_Table_0" class="form-select">
-                                             <option value="7">7</option>
-                                             <option value="10">10</option>
-                                             <option value="20">20</option>
-                                             <option value="50">50</option>
-                                             <option value="70">70</option>
-                                             <option value="100">100</option>
-                                          </select>
-                                       </label>
-                                    </div>
-                                    <div class="dt-buttons d-flex flex-wrap"> 
-                                       <button
-                                          class="dt-button buttons-collection dropdown-toggle btn btn-label-secondary me-3 waves-effect waves-light"
-                                          tabindex="0" aria-controls="DataTables_Table_0" type="button"
-                                          aria-haspopup="dialog" aria-expanded="false">
-                                          <span><i class="ti ti-download me-1 ti-xs"></i>Exportar</span>
-                                             <span class="dt-down-arrow">▼</span>
-                                       </button> 
-                                    </div>
-                                 </div>
-                              </div>
-                           </div> -->
-                           <table class="datatables-products table dataTable no-footer dtr-column"
-                              id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
-                              <thead class="border-top">
-                                 <tr>
-                                    <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1"
-                                       style="width: 30px; display: none;" aria-label=""></th>
-                                    <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1"
-                                       colspan="1" style="width: 25px;" data-col="1" aria-label=""><input
-                                          type="checkbox" class="form-check-input"></th>
-                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
-                                       rowspan="1" colspan="1" style="width: 140.297px;" aria-sort="ascending"
-                                       aria-label="product: activate to sort column descending">product</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                       colspan="1" style="width: 153.719px;"
-                                       aria-label="category: activate to sort column ascending">category</th>
-                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 104.594px;"
-                                       aria-label="stock">stock</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                       colspan="1" style="width: 77px;"
-                                       aria-label="sku: activate to sort column ascending">sku</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                       colspan="1" style="width: 98.875px;"
-                                       aria-label="price: activate to sort column ascending">price</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                       colspan="1" style="width: 76.5156px;"
-                                       aria-label="qty: activate to sort column ascending">qty</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                       colspan="1" style="width: 118.469px;"
-                                       aria-label="status: activate to sort column ascending">status</th>
-                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 127.531px;"
-                                       aria-label="Actions">Actions</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="odd">
-                                    <td valign="top" colspan="9" class="dataTables_empty">Loading...</td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                           <div class="row mx-2">
-                              <div class="col-sm-12 col-md-6">
-                                 <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                    aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                              </div>
-                              <div class="col-sm-12 col-md-6">
-                                 <div class="dataTables_paginate paging_simple_numbers"
-                                    id="DataTables_Table_0_paginate">
-                                    <ul class="pagination">
-                                       <li class="paginate_button page-item previous disabled"
-                                          id="DataTables_Table_0_previous"><a aria-controls="DataTables_Table_0"
-                                             aria-disabled="true" role="link" data-dt-idx="previous" tabindex="0"
-                                             class="page-link">Previous</a></li>
-                                       <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next">
-                                          <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
-                                             data-dt-idx="next" tabindex="0" class="page-link">Next</a></li>
-                                    </ul>
+                                          <!-- LUCRATIVIDADE POR CLIENTE -->
+
+                                       </tbody>
+                                    </table>
+                                    <div style="width: 1%;"></div>
                                  </div>
                               </div>
                            </div>
+
                         </div>
                      </div>
                   </div>
+                  <!--/ Fim Rotas lucrativas -->
+
                </div>
                <!-- / Content -->
 
@@ -346,7 +327,6 @@
                </footer>
                <!-- / Footer -->
 
-
                <div class="content-backdrop fade"></div>
             </div>
             <!-- Content wrapper -->
@@ -361,10 +341,13 @@
 
    <script src="/assets/vendor/js/menu.js"></script>
    <script src="/assets/js/main.js"></script>
+   <script src="/assets/vendor/libs/jquery/jquery.js"></script>
+   <script src="/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
    <script src="/assets/vendor/js/bootstrap.js"></script>
 
    <!-- Arquivos Criados -->
    <script src="/assets/js/1-main.js"></script>
+   <script src="/assets/js/1-financeiro.js"></script>
 
 </body>
 

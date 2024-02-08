@@ -10,26 +10,21 @@
     ]
   },
   {
-    "id": 5,
-    "username": "ederson",
-    "password": "afsdfdsfdsf",
+    "id": 6,
+    "username": "edson",
+    "password": "mce191919",
     "module": [
+      "pedidos",
+      "financeiro",
       "usuarios"
     ]
   },
   {
-    "id": 6,
-    "username": "petryck",
-    "password": "petryck",
-    "module": [
-      "pedidos"
-    ]
-  },
-  {
     "id": 7,
-    "username": "edson",
-    "password": "edson",
+    "username": "joao",
+    "password": "mce191919",
     "module": [
+      "pedidos",
       "financeiro",
       "usuarios"
     ]

@@ -5,36 +5,71 @@ const { executeQuery } = require('../connect/firebird');
 const fs = require('fs');
 
 const usersData = JSON.parse(fs.readFileSync('./server/usersData.json', 'utf-8'));
+const data = new Date;
+const ano = data.getFullYear();
+
+router.get('/status', async (req, res, next) => {
+  const result = await executeQuery(`
+    SELECT
+      CAST(NOMSTATUSFRE AS VARCHAR(8191) CHARACTER SET ISO8859_1) AS NOMSTATUSFRE,
+      COLOR
+    FROM
+      TABSTATUSFRE
+    WHERE
+      NOSTATUSFRE NOT IN (1 /*CONCLUIDO*/)
+  `);
+    
+  res.json(result)
+});
 
 router.get('/pedidos', async (req, res, next) => {
-  const draw = req.query.draw;
-
-  // Verificar se a propriedade search existe
-  const search = req.query.search || '';
-
-  let count = 30; // Default 30 cards por status
-  if (search) {
-    count = 9999999999; // Se tiver pesquisar, trás qualquer coisa do banco
-  }
 
   const result = await executeQuery(`
     SELECT
       PED.NOMOVTRA,
       CLI.NOMCLI AS CLIENTE,
       COALESCE(PED.CONTAINER, 'CARGA SOLTA') AS CONTAINER,
-      CASE PED.NOSTATUSFRE
-        WHEN 1 THEN 'CONCLUIDO'
-        WHEN 2 THEN 'CANCELADO'
-        WHEN null THEN 'SEM_STATUS'
-        WHEN 3 THEN 'DOCUMENTOS_ENTREGUES'
-        WHEN 4 THEN 'DEVOLUÇÃO_DE_VAZIO'
-        WHEN 5 THEN 'CNTR_VAZIO_AGENDADO'
-      END AS STATUS,
-      FLW.DATA AS DATA_FOLLOW
+      CAST(STF.NOMSTATUSFRE AS VARCHAR(8191) CHARACTER SET ISO8859_1) AS NOMSTATUSFRE,
+      FLW.DATA AS DATA_FOLLOW,
+
+      COL.NOMCLI AS COLETA,
+      CCOL.NOMCID AS CID_COLETA,
+      CCOL.UFCID AS UF_COLETA,
+
+      DEST.NOMCLI AS DESTINATARIO,
+      CDEST.NOMCID AS CID_DESTINATARIO,
+      CDEST.UFCID AS UF_DESTINATARIO,
+
+      DISTR.NOMCLI AS ENTREGA,
+      CDISTR.NOMCID AS CID_ENTREGA,
+      CDISTR.UFCID AS UF_ENTREGA,
+
+      REM.NOMCLI AS REMETENTE,
+      CREM.NOMCID AS CID_REMETENTE,
+      CREM.UFCID AS UF_REMETENTE,
+
+      PED.TOTALFRETE,
+      PED.VLRMOT
     FROM
       TABMOVTRA PED
     LEFT OUTER JOIN
       TABCLI CLI ON CLI.NOCLI = PED.NOCLI
+    LEFT OUTER JOIN
+      TABCLI COL ON COL.NOCLI = PED.NOTERM_COL
+    LEFT OUTER JOIN
+      TABCLI DEST ON DEST.NOCLI = PED.NOCLI_DEST
+    LEFT OUTER JOIN
+      TABCLI DISTR ON DISTR.NOCLI = PED.NOTERM_DEST
+    LEFT OUTER JOIN
+      TABCLI REM ON REM.NOCLI = PED.NOCLI_REM
+    LEFT OUTER JOIN
+      TABCID CCOL ON CCOL.NOCID = COL.NOCID
+    LEFT OUTER JOIN
+      TABCID CDEST ON CDEST.NOCID = DEST.NOCID
+    LEFT OUTER JOIN
+      TABCID CDISTR ON CDISTR.NOCID = DISTR.NOCID
+    LEFT OUTER JOIN
+      TABCID CREM ON CREM.NOCID = REM.NOCID
     LEFT OUTER JOIN
       TABSTATUSFRE STF ON STF.NOSTATUSFRE = PED.NOSTATUSFRE
     LEFT OUTER JOIN (
@@ -47,90 +82,123 @@ router.get('/pedidos', async (req, res, next) => {
         FLW.NOMOVTRA
     ) FLW ON FLW.NOMOVTRA = PED.NOMOVTRA
     WHERE
-      (
-        SELECT COUNT(*)
-        FROM TABMOVTRA
-        WHERE NOSTATUSFRE = PED.NOSTATUSFRE
-          AND NOMOVTRA >= PED.NOMOVTRA
-      ) <= ${count}
-    ${search ? `AND (PED.NOMOVTRA LIKE '%${search}%' OR CLI.NOMCLI LIKE '%${search}%' OR PED.CONTAINER LIKE '%${search}%')` : ''}
+      STF.NOSTATUSFRE NOT IN (1 /*CONCLUIDO*/)
+      AND EXTRACT(YEAR FROM PED.DATAINCLUSAO) = ${ano}
     ORDER BY
       PED.NOMOVTRA DESC
-  `);
+  `)
 
-  res.status(200).json({
-    draw: draw,
-    recordsTotal: result.length, // O total de registros no conjunto de dados (sem filtros)
-    recordsFiltered: result.length, // O total de registros após a aplicação de filtros
-    data: result,
-  });
+  res.json(result)
+
 });
 
 router.get('/pedidos-modal/:nomovtra', async (req, res, next) => {
   const { nomovtra } = req.params;
 
-  try {
-    const result = await executeQuery(`
-      SELECT
-        PED.NOMOVTRA,
-        CLI.NOMCLI AS CLIENTE,
+  const result = await executeQuery(`
+    SELECT
+      PED.NOMOVTRA,
+      CLI.NOMCLI AS CLIENTE,
 
-        COL.NOMCLI AS COLETA,
-        CCOL.NOMCID AS CID_COLETA,
-        CCOL.UFCID AS UF_COLETA,
+      COALESCE(MOT.NOMCLI, '') AS MOTORISTA,
+      COALESCE(PROP.NOMCLI, '') AS PROPRIETARIO,
+      COALESCE(PED.PLACACAV, '') AS PLACACAV,
+      COALESCE(PED.PLACACAR, '') AS PLACACAR,
+      COALESCE(PED.PLACACAR2, '') AS PLACACAR2,
+      COALESCE(PED.NOTAC, '') AS NOTAC,
 
-        DEST.NOMCLI AS DESTINATARIO,
-        CDEST.NOMCID AS CID_DESTINATARIO,
-        CDEST.UFCID AS UF_DESTINATARIO,
+      COL.NOMCLI AS COLETA,
+      CCOL.NOMCID AS CID_COLETA,
+      CCOL.UFCID AS UF_COLETA,
 
-        DISTR.NOMCLI AS ENTREGA,
-        CDISTR.NOMCID AS CID_ENTREGA,
-        CDISTR.UFCID AS UF_ENTREGA,
+      DEST.NOMCLI AS DESTINATARIO,
+      CDEST.NOMCID AS CID_DESTINATARIO,
+      CDEST.UFCID AS UF_DESTINATARIO,
 
-        REM.NOMCLI AS REMETENTE,
-        CREM.NOMCID AS CID_REMETENTE,
-        CREM.UFCID AS UF_REMETENTE,
-        
+      DISTR.NOMCLI AS ENTREGA,
+      CDISTR.NOMCID AS CID_ENTREGA,
+      CDISTR.UFCID AS UF_ENTREGA,
 
-        FLW.DATA AS DATA_FOLLOW,
-        FLW.STATUS AS STATUS_FOLLOW,
-        CAST(FLW.OBS AS VARCHAR(8191) CHARACTER SET ISO8859_1) AS OBS_FOLLOW,
+      REM.NOMCLI AS REMETENTE,
+      CREM.NOMCID AS CID_REMETENTE,
+      CREM.UFCID AS UF_REMETENTE,
+      
 
-        PED.TOTALFRETE,
-        PED.VLRMOT
+      FLW.DATA AS DATA_FOLLOW,
+      FLW.STATUS AS STATUS_FOLLOW,
+      CAST(FLW.OBS AS VARCHAR(8191) CHARACTER SET ISO8859_1) AS OBS_FOLLOW,
 
-      FROM
-        TABMOVTRA PED
-      LEFT OUTER JOIN
-        TABCLI CLI ON CLI.NOCLI = PED.NOCLI
-      LEFT OUTER JOIN
+      PED.TOTALFRETE,
+      PED.VLRMOT
+
+    FROM
+      TABMOVTRA PED
+    LEFT OUTER JOIN
+      TABCLI CLI ON CLI.NOCLI = PED.NOCLI
+    LEFT OUTER JOIN
+      TABCLI MOT ON MOT.NOCLI = PED.NOMOT
+    LEFT OUTER JOIN
+      TABCLI PROP ON PROP.NOCLI = PED.NOPROP
+    LEFT OUTER JOIN
+      TABCLI COL ON COL.NOCLI = PED.NOTERM_COL
+    LEFT OUTER JOIN
+      TABCLI DEST ON DEST.NOCLI = PED.NOCLI_DEST
+    LEFT OUTER JOIN
+      TABCLI DISTR ON DISTR.NOCLI = PED.NOTERM_DEST
+    LEFT OUTER JOIN
+      TABCLI REM ON REM.NOCLI = PED.NOCLI_REM
+    LEFT OUTER JOIN
+      TABCID CCOL ON CCOL.NOCID = COL.NOCID
+    LEFT OUTER JOIN
+      TABCID CDEST ON CDEST.NOCID = DEST.NOCID
+    LEFT OUTER JOIN
+      TABCID CDISTR ON CDISTR.NOCID = DISTR.NOCID
+    LEFT OUTER JOIN
+      TABCID CREM ON CREM.NOCID = REM.NOCID
+    LEFT OUTER JOIN
+      TABFALLOW FLW ON FLW.NOMOVTRA = PED.NOMOVTRA
+    WHERE
+      PED.NOMOVTRA = ${nomovtra}
+  `);
+
+  res.json(result);
+});
+
+router.get('/faturamento-pedidos', async (req, res, next) => {
+
+  const result = await executeQuery(`
+    SELECT
+      VPF.NOMOVTRA,
+      CAST(VPF.NOMCLI AS VARCHAR(8191) CHARACTER SET ISO8859_1) AS NOMCLI,
+      VPF.TOTALPG,
+      VPF.TOTALPAGO,
+      VPF.DATAPGTO,
+
+      VPF.TOTALREC,
+      VPF.TOTALRECEBIDO,
+      VPF.DATACONC,
+
+      COALESCE(CCOL.NOMCID, 'SEM ENDEREÇO DE COLETA') AS CID_COLETA,
+      COALESCE(' - ' || CCOL.UFCID, '') AS UF_COLETA,
+  
+      COALESCE(CDISTR.NOMCID, 'SEM ENDEREÇO DE ENTREGA') AS CID_ENTREGA,
+      COALESCE(' - ' || CDISTR.UFCID, '') AS UF_ENTREGA
+    FROM
+        V_PEDIDO_FINANCEIRO VPF
+    LEFT OUTER JOIN
+        TABMOVTRA PED ON PED.NOMOVTRA = VPF.NOMOVTRA
+    LEFT OUTER JOIN
         TABCLI COL ON COL.NOCLI = PED.NOTERM_COL
-      LEFT OUTER JOIN
-        TABCLI DEST ON DEST.NOCLI = PED.NOCLI_DEST
-      LEFT OUTER JOIN
-        TABCLI DISTR ON DISTR.NOCLI = PED.NOTERM_DEST
-      LEFT OUTER JOIN
-        TABCLI REM ON REM.NOCLI = PED.NOCLI_REM
-      LEFT OUTER JOIN
+    LEFT OUTER JOIN
         TABCID CCOL ON CCOL.NOCID = COL.NOCID
-      LEFT OUTER JOIN
-        TABCID CDEST ON CDEST.NOCID = DEST.NOCID
-      LEFT OUTER JOIN
+    LEFT OUTER JOIN
+        TABCLI DISTR ON DISTR.NOCLI = PED.NOTERM_DEST
+    LEFT OUTER JOIN
         TABCID CDISTR ON CDISTR.NOCID = DISTR.NOCID
-      LEFT OUTER JOIN
-        TABCID CREM ON CREM.NOCID = REM.NOCID
-      LEFT OUTER JOIN
-        TABFALLOW FLW ON FLW.NOMOVTRA = PED.NOMOVTRA
-      WHERE
-        PED.NOMOVTRA = ${nomovtra}
-    `);
-
-    res.json(result);
-  } catch (error) {
-    console.error('Erro na consulta SQL:', error);
-    res.status(500).json({ error: 'Erro na consulta SQL' });
-  }
-})
+  `);
+  
+  res.status(200).json(result);
+});
 
 router.post('/login', async (req, res, next) => {
   const { name, password } = req.body;
@@ -144,36 +212,23 @@ router.post('/login', async (req, res, next) => {
   } else {
     res.status(401).json({ message: 'Credenciais inválidas' });
   }
-
+    
 });
 
 router.get('/modulos', (req, res) => {
   // Pega os modulos disponiveis no usuario superuser, porque nele tem todos os modulos
   const modulos = usersData.find(user => user.username === 'superuser');
   res.json(modulos);
+
 })
 
-router.get('/usuarios', async (req, res) => {
-  const draw = req.query.draw;
+router.get('/usuarios', (req, res) => {
+  // Pega os modulos disponiveis no usuario superuser, porque nele tem todos os modulos
+  const usuarios = usersData
+  .filter(user => user.id !== 1) // Não puxa o superuser
 
-  // Verificar se a propriedade search existe
-  const search = req.query.search || '';
-
-  const filtrar_usuarios = usersData.filter(user => {
-    // Remove o usuário superuser
-    return (
-      user.username.toLowerCase().includes(search.toLowerCase()) ||
-      user.module.some(module => module.toLowerCase().includes(search.toLowerCase()))
-    ) && user.id !== 1;
-  });
-
-  res.json({
-    draw: draw,
-    recordsTotal: usersData.length, // O total de registros no conjunto de dados (sem filtros)
-    recordsFiltered: filtrar_usuarios.length, // O total de registros após a aplicação de filtros
-    data: filtrar_usuarios,
-  });
-});
+  res.json(usuarios);
+})
 
 router.post('/atualizar-usuario/:id', (req, res) => {
   const { id } = req.params; // Obtenha o ID da URL
@@ -212,6 +267,7 @@ router.delete('/excluir-usuario/:id', (req, res) => {
   } else {
     res.status(404).json({ message: 'Usuário não encontrado' });
   }
+
 })
 
 router.post('/inserir-usuario', (req, res) => {
