@@ -6,8 +6,10 @@ const fs = require('fs');
 const path = require('path');
 
 // const usersData = JSON.parse(fs.readFileSync('./server/usersData.json', 'utf-8'));
-const filePath = path.join(__dirname, 'server', 'usersData.json');
+const filePath = path.join(__dirname, '../', 'server/usersData.json');
 const usersData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+
 const data = new Date;
 const ano = data.getFullYear();
 
