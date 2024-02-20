@@ -216,9 +216,9 @@ document.addEventListener("DOMContentLoaded", function () {
      modal_end_entrega.textContent = '------------';
      modal_end_remetente.textContent = '------------';
      modal_end_destinatario.textContent = '------------';
-     modal_receita.textContent = 'R$ ---,---'
-     modal_despesa.textContent = 'R$ ---,---'
-     modal_lucro.textContent = 'R$ ---,---'
+     modal_receita ? modal_receita.textContent = 'R$ ---,---' : '';
+     modal_despesa ? modal_despesa.textContent = 'R$ ---,---'  : '';
+     modal_lucro ?  modal_lucro.textContent = 'R$ ---,---'  : '';
      modal_follow.innerHTML = ''; // Limpe o conteúdo da lista de follow-ups
    });
 });
@@ -258,9 +258,9 @@ async function dados_modal(elemento_clicado) {
    modal_end_entrega.textContent = `${consulta_modal[0].CID_ENTREGA} / ${consulta_modal[0].UF_ENTREGA}`
    modal_end_remetente.textContent = `${consulta_modal[0].CID_REMETENTE} / ${consulta_modal[0].UF_REMETENTE}`
    modal_end_destinatario.textContent = `${consulta_modal[0].CID_DESTINATARIO} / ${consulta_modal[0].UF_DESTINATARIO}`
-   modal_receita.textContent = `${parseFloat(consulta_modal[0].TOTALFRETE).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}`;
-   modal_despesa.textContent = `-${parseFloat(consulta_modal[0].VLRMOT).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}`;
-   modal_lucro.textContent = `${parseFloat(consulta_modal[0].TOTALFRETE - consulta_modal[0].VLRMOT).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}`
+   modal_receita ? modal_receita.textContent = `${parseFloat(consulta_modal[0].TOTALREC).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}` : '';
+   modal_despesa ? modal_despesa.textContent = `-${parseFloat(consulta_modal[0].TOTALPG).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}` : '';
+   modal_lucro ? modal_lucro.textContent = `${parseFloat(consulta_modal[0].TOTALREC - consulta_modal[0].TOTALPG).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}`  : ''
    // FIM Insere dados do pedido no modal
 
    const acordeao_modal_carga = document.getElementById('acordeao_modal_carga');

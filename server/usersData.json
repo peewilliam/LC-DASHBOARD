@@ -28,5 +28,13 @@
       "financeiro",
       "usuarios"
     ]
+  },
+  {
+    "id": 8,
+    "username": "teste",
+    "password": "teste",
+    "module": [
+      "pedidos"
+    ]
   }
 ]

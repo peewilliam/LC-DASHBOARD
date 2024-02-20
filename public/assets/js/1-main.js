@@ -17,7 +17,7 @@ function checkModules() {
          if (!modules.includes(module)) {
             div.remove();
          } else {
-            div.style.display = 'block';
+            div.style.display = 'flex';
          }
       });
    }
